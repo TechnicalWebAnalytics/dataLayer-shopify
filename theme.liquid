@@ -1,0 +1,479 @@
+<script>
+/*
+    ^---^  
+  =< ^.^ >=
+====v===v==========================
+| DATALAYER ARCHITECTURE: SHOPIFY |
+-----------------------------------  
+
+DEFINITION:
+A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs.
+
+RESOURCES:
+http://www.datalayerdoctor.com/a-gentle-introduction-to-the-data-layer-for-digital-marketers/
+http://www.simoahava.com/analytics/data-layer/
+
+AUTHORS:
+Mechelle Warneke = [{
+Email: mechellewarneke@gmail.com,
+Website: mechellewarneke.com,
+BVACCEL: [{
+    Email: mechelle@bvaccel.com,
+    Position: XO Strategist | Technical Web Analyst
+}]
+}];
+
+EXTERNAL DEPENDENCIES:
+* jQuery Cookie Plugin v1.4.1 - https://github.com/carhartl/jquery-cookie
+
+DataLayer Architecture: Shopify v1.3.1
+COPYRIGHT 2016
+LICENSES: MIT ( https://opensource.org/licenses/MIT )
+*/
+
+/* 
+========================
+| DYNAMIC DEPENDENCIES |
+------------------------
+
+[ IMPORTANT ]: Review options and make any necessary changes. */
+
+/* ------- DYNAMIC CART ------- */
+
+// If cart is dynamic ( meaning it will display on the same page instead of reloading to new page ), set this to true.
+var dynamic = false;
+
+/* [ IMPORTANT ] if dynamic = true fill out below */
+
+var cartButton = 'REPLACE WITH SELECTOR'; 
+// EX: jQuery( "#cd-cart-trigger" )
+
+var cartConditional = 'REPLACE WITH CONDITIONAL VISIBILITY' 
+// EX: jQuery('.is-visible').length > 0 
+
+/* ------- CONSOLE DATA ------- */
+// If you want all data to be logged to the console for reference set to true. 
+
+var consoleLog = true;
+
+/*
+======================
+| LOAD PREREQUISITES |
+----------------------
+
+Load jQuery Cookie Library 
+--------------------------
+jQuery Cookie Plugin v1.4.1
+https://github.com/carhartl/jquery-cookie
+
+Copyright 2006, 2014 Klaus Hartl
+Released under the MIT license
+*/
+
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD (Register as an anonymous module)
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        // Node/CommonJS
+        module.exports = factory(require('jquery'));
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {
+
+    var pluses = /\+/g;
+
+    function encode(s) {
+        return config.raw ? s : encodeURIComponent(s);
+    }
+
+    function decode(s) {
+        return config.raw ? s : decodeURIComponent(s);
+    }
+
+    function stringifyCookieValue(value) {
+        return encode(config.json ? JSON.stringify(value) : String(value));
+    }
+
+    function parseCookieValue(s) {
+        if (s.indexOf('"') === 0) {
+            // This is a quoted cookie as according to RFC2068, unescape...
+            s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+        }
+
+        try {
+            // Replace server-side written pluses with spaces.
+            // If we can't decode the cookie, ignore it, it's unusable.
+            // If we can't parse the cookie, ignore it, it's unusable.
+            s = decodeURIComponent(s.replace(pluses, ' '));
+            return config.json ? JSON.parse(s) : s;
+        } catch(e) {}
+    }
+
+    function read(s, converter) {
+        var value = config.raw ? s : parseCookieValue(s);
+        return $.isFunction(converter) ? converter(value) : value;
+    }
+
+    var config = $.cookie = function (key, value, options) {
+
+        // Write
+
+        if (arguments.length > 1 && !$.isFunction(value)) {
+            options = $.extend({}, config.defaults, options);
+
+            if (typeof options.expires === 'number') {
+                var days = options.expires, t = options.expires = new Date();
+                t.setMilliseconds(t.getMilliseconds() + days * 864e+5);
+            }
+
+            return (document.cookie = [
+                encode(key), '=', stringifyCookieValue(value),
+                options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+                options.path    ? '; path=' + options.path : '',
+                options.domain  ? '; domain=' + options.domain : '',
+                options.secure  ? '; secure' : ''
+            ].join(''));
+        }
+
+        // Read
+
+        var result = key ? undefined : {},
+            // To prevent the for loop in the first place assign an empty array
+            // in case there are no cookies at all. Also prevents odd result when
+            // calling $.cookie().
+            cookies = document.cookie ? document.cookie.split('; ') : [],
+            i = 0,
+            l = cookies.length;
+
+        for (; i < l; i++) {
+            var parts = cookies[i].split('='),
+                name = decode(parts.shift()),
+                cookie = parts.join('=');
+
+            if (key === name) {
+                // If second argument (value) is a function it's a converter...
+                result = read(cookie, value);
+                break;
+            }
+
+            // Prevent storing a cookie that we couldn't decode.
+            if (!key && (cookie = read(cookie)) !== undefined) {
+                result[name] = cookie;
+            }
+        }
+
+        return result;
+    };
+
+    config.defaults = {};
+
+    $.removeCookie = function (key, options) {
+        // Must not alter options, thus extending a fresh object...
+        $.cookie(key, '', $.extend({}, options, { expires: -1 }));
+        return !$.cookie(key);
+    };
+
+}));
+
+/*
+==========================
+| Begin GA Check Inteval |
+--------------------------
+*/
+
+var timer = 1;
+var checkGAinterval = setInterval(function() {
+    var countdown = timer++;
+    console.log(countdown);
+
+    if (typeof ga != "undefined") {
+        clearInterval(checkGAinterval);    
+
+        console.log("----------------------\nBEGIN DATALAYER BUILD\nTHEME PAGES\n----------------------");
+        window.dataLayer = window.dataLayer || []
+        
+        console.log('Page Template = {{template}}');
+        var template = '{{template}}';
+
+
+/*
+GA Client ID
+------------
+1. Capture & Store Google Analytics Client ID
+2. This is established as an initial identifier before user creates an account
+*/
+
+    cid = [];
+    if( typeof ga != 'undefined' ){
+      ga(function(tracker) {
+        c = tracker.get('clientId');
+        cid.push(c);
+    });
+  }else{
+      cid = "";
+  }
+  console.log("Client ID = "+cid[0]);
+
+
+/*
+Landing Page Cookie
+-------------------
+1. Detect if user just landed on the site
+2. Only fires if Page Title matches website
+*/
+
+$.cookie.raw = true;
+
+if( $.cookie('landingPage') === undefined || $.cookie('landingPage').length === 0 ){
+
+    $.cookie('landingPage', unescape);
+    $.removeCookie('landingPage',{ path: '/' });
+    $.cookie('landingPage', 'landed',{ path: '/' });
+    var landingPage = true;
+    console.log("Landing Page = True");
+
+}else{
+
+    $.cookie('landingPage', unescape);
+    $.removeCookie('landingPage',{ path: '/' });
+    $.cookie('landingPage', 'refresh',{ path: '/' });
+    console.log("Landing Page = False");
+
+}
+
+/* 
+Log State Cookie
+----------------
+*/
+
+{% if customer %}
+var logState = "Logged In";
+{% endif %}
+
+if( typeof logState == "undefined" ){
+    var logState = "Logged Out";
+    $.cookie('logState', unescape);
+    $.removeCookie('logState',{ path: '/' });
+    $.cookie('logState', 'loggedOut',{ path: '/' })
+    console.log("Log State = Logged Out");
+}
+
+if( logState === "Logged In"){
+    if( $.cookie('logState') === "loggedOut" || $.cookie('logState') === undefined ){
+
+      $.cookie('logState', unescape);
+      $.removeCookie('logState',{ path: '/' });
+      $.cookie('logState', 'firstLog',{ path: '/' });
+      console.log("Log State = Logged In");
+
+    }else if( $.cookie("logState") === "firstLog"  ){
+
+      $.cookie('logState', unescape);
+      $.removeCookie('logState',{ path: '/' });
+      $.cookie('logState', 'refresh',{ path: '/' });
+      console.log("Log State = Logged In");
+
+  }else{
+    console.log("Log State = Logged In");
+  }
+}
+
+if( $.cookie("logState") === "firstLog"  ){
+  var firstLog = "True";
+}else{
+  var firstLog = "False";
+}
+console.log("First Log = "+firstLog);
+
+    // TIMESTAMP
+    var ts = Date.now();
+    console.log("Timestamp = "+ts);
+
+/*
+==============
+| DATALAYERS |
+--------------
+*/
+
+/*
+DATALAYER: Landing Page 
+-----------------------
+Fires any time a user first lands on the site.
+*/
+
+if( $.cookie("landingPage") === "landed"  ){
+  dataLayer.push({
+    'pageType':'Landing Page',
+    'event':'Landing Page'
+});
+}
+
+/*
+DATALAYER: Log State
+--------------------
+1. Determine if user is logged in or not. 
+2. Return User specific data.
+*/
+
+dataLayer.push({
+  {% if shop.customer_accounts_enabled %}
+  {% if customer %}
+  'userId': '{{customer.id}}',
+  'customerEmail': '{{customer.email}}',
+  'logState': "Logged In",
+  {% else %}
+  'logState': "Logged Out",
+  {% endif %}
+  {% endif %}
+  'firstLog': firstLog,
+  'clientId': cid[0],
+  'customerEmail': '{{customer.email}}',
+  'timestamp': ts
+},{'event':'Log State'});
+
+/* 
+DATALAYER: Blog Articles 
+------------------------
+Fire on Blog Article Pages
+*/
+
+{% if template contains "article" %}
+dataLayer.push({
+  'author': '{{article.author}}',
+  'title': '{{article.title}}',
+  'dateCreated': '{{article.created_at}}',
+},{
+    'pageType':'Blog',
+    'event':'Blog Page'
+});
+console.log("----------------------\nBLOG PAGE DATA\n----------------------");
+console.log("Author: {{article.author}}\nTitle: {{article.title}}\nDate Created: {{article.created_at}}");
+{% endif %}
+
+/*
+DATALAYER: Product List Page ( Collections, Category)
+-----------------------------------------------------
+Fire on all product listing pages.
+*/
+
+{% if template contains "collection" %}
+dataLayer.push({
+    'productList': '{{ collection.title }}'
+},{
+  'pageType':'Category',
+  'event':'Product List Page'
+});
+{% endif %}
+
+/*
+DATALAYER: Product Page
+-----------------------
+Fire on all Product View pages.
+*/
+
+if( template.match(/.*product.*/gi) && !template.match(/.*collection.*/gi) ){
+dataLayer.push({
+    'products': [{
+        'id': '{{product.id}}', 
+        'name': '{{product.title}}',
+        'price': '{{product.price | money_without_currency}}'
+    }]},{
+        'pageType':'Product',
+        'event':'Product Page'
+
+    });
+  }
+
+/*
+DATALAYER: Cart Page
+--------------------
+1. Fire anytime a user views their cart. 
+2. Any dynamic carts require an interval detect. 
+*/
+
+// run a script to capture form submits and push an event
+// to append to a trigger for paid conversion scripts / events
+fire = 0;
+
+jQuery( "#cd-cart-trigger" ).click(function(){
+// ------------------------------ FUNCTION 1
+console.log("Cart Click")
+
+// Prevents multiple fires
+if( fire == 0 ){
+// ------------- IF 1
+fire = 1;
+
+    // set loader variable
+    // keep checking loader is done
+    interval = setInterval(function(){
+        
+        console.log("----------------------\nCART\n----------------------");
+        console.log("Cart Interval Set");
+
+        if( jQuery('.is-visible').length > 0 ){
+
+          // when loader is done stop interval 
+          clearInterval(interval)
+
+          dataLayer.push({
+            'cartProducts': 
+                [
+                {% for line in cart.items %}
+                {
+                'id': '{{line_item.id}}',
+                'sku': '{{line_item.sku}}',
+                'name': '{{line_item.title}}',
+                'price': '{{line_item.price | money_without_currency}}',
+                'quantity': '{{line_item.quantity}}'
+                },
+                {% endfor %}
+                ]
+            },{
+                'pageType':'Cart',
+                'event':'Cart Page'
+            });
+
+          fire = 0;
+
+          console.log("Cart Visible - Interval Ends");
+          
+          set = 1;
+          {% for line_item in cart.items %}                
+                console.log("ITEM "+set);
+                console.log("ID: {{line_item.id}}\nSKU: {{line_item.sku}}\nName: {{line_item.title}}\nPrice: {{line_item.price | money_without_currency}}\nQuantity: {{line_item.quantity}}");
+                set++;
+          {% endfor %}
+        }else if( count == 30 ){
+          clearInterval(interval);
+          console.log("Interval Timeout");
+          fire = 0;
+        }
+
+    }, 500); 
+
+    setTimeout(function(){
+        interval; 
+    }, 1000); 
+// ------------- IF 1
+}
+// ------------------------------ FUNCTION 1
+});
+      
+/* 
+DATALAYER: All Pages
+--------------------
+Fire all pages trigger after all additional dataLayers have loaded. 
+*/
+
+dataLayer.push({
+    'event':'All Pages'
+});
+
+// END GA INTERVAL
+}
+}, 3000);
+</script>
