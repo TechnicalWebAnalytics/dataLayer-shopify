@@ -11,7 +11,12 @@ http://www.datalayerdoctor.com/a-gentle-introduction-to-the-data-layer-for-digit
 http://www.simoahava.com/analytics/data-layer/
 
 ## Integration Instructions
-Please keep note that this is a base template that attempts to exploit Shopify’s data rendering capabilities and create an ease of integration for dataLayers that can be reused across all Shopify sites. Nonetheless, each site could carry variations that may not be completely compatible with this template. There may also be some areas of data we may have missed, may be a new configuration, or we wouldn’t know is necessary for your efforts. It is highly recommended to review the entire implementation and make your own configurations if needed.
+
+If you only need to reference the dataLayer output naviagate to the "Pages & Variables" section or just click on [this link](#pages--variables-guide).
+
+For installation please continue to the next paragraph. 
+
+Keep note that this is a base template that attempts to exploit Shopify’s data rendering capabilities and create an ease of integration for dataLayers that can be reused across all Shopify sites. Nonetheless, each site could carry variations that may not be completely compatible with this template. There may also be some areas of data we may have missed, may be a new configuration, or we wouldn’t know is necessary for your efforts. It is highly recommended to review the entire implementation and make your own configurations if needed.
 
 Please let us know if you have any questions or concerns and we will be happy to follow up as soon as possible :)
 
@@ -28,17 +33,20 @@ If the **Checkout page is _can be edited_ editable**, use this option. Note that
 |dataLayer-allPages|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
 |dataLayer-confirmation|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
 |prerequisite library|Creation or Modification|This can either be a **Snippet** or **loaded into your own prerequisite library** |
-|Google Tag Manager or any other Tag Manager Code|Creation or Modification|This can either be a **Snippet** or added directly into your **Layout**|
+|Google Tag Manager or any other Tag Manager Code|Creation or Modification|This can either be a **Snippet** ( unless adding to the confirmation page ) or added directly into your **Layout**|
 
 #### Instructions ( Option 1 )
 1. **GTM / Tag Manager Installation or Modification**
   1. Within the **theme.liquid** layout, place the GTM / Tag Manager container ( snippet or actual code block ) **directly below the opening \<body> tag**.
-  2.  Within the **confirmation page** the GTM / Tag Manager container ( snippet or actual code block ) should be placed above all additional scripts.
+  2.  Within the **confirmation page** the GTM / Tag Manager container ( actual code block ONLY ) should be placed above all additional scripts. **Important Note:** Snippets cannot be applied to the confirmation page, any scripts MUST be placed as an actual code block.
   
 2. **Create the dataLayer Snippets ( _use exact naming and casing!_ )**
-  1. Create a snippet called dataLayer-allPages, add the provided dataLayer-allPages.js in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
+  1. Create a snippet called **_dataLayer-allPages_** and copy over the provided *dataLayer-allPages.js* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
 
-
+3. **Add the code to the layouts**
+  1. Within the **theme.liquid** layout, place this include snippet `{% include 'dataLayer-allPages' %}` right before the closing \</head> tag
+  2. Within the **confirmation page** admin settings, copy over the provided *dataLayer-confirmation.js* directly below the GTM code block. 
+  
 ==================
 
 ### Installation Option 2: 
@@ -52,6 +60,20 @@ If the **Checkout page is _can be edited_**, use this option.
 |dataLayer-allPages|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
 |dataLayer-confirmation|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
 |prerequisite library|Creation or Modification|This can either be a snippet or loaded into your own prerequisite library |
+
+#### Instructions ( Option 2 )
+1. **GTM / Tag Manager Installation or Modification**
+  1. Within the **theme.liquid & checkout.liquid** layout, place the GTM / Tag Manager container ( snippet or actual code block ) **directly below the opening \<body> tag**.
+
+2. **Create the dataLayer Snippets ( _use exact naming and casing!_ )**
+  1. Create a snippet called **_dataLayer-allPages_** and copy over the provided *dataLayer-allPages.js* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
+  2. Create a snippet called **_dataLayer-checkout_** and copy over the provided *dataLayer-checkout.js* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
+
+3. **Add the code to the layouts**
+  1. Within the **theme.liquid** layout, place this include snippet `{% include 'dataLayer-allPages' %}` right before the closing \</head> tag
+  2. Within the **checkout.liquid** layout, place this include snippet `{% include 'dataLayer-checkout' %}` right before the closing \</head> tag
+  
+==================
 
 ## Pages & Variables Guide
 
