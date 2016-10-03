@@ -25,7 +25,7 @@ Please let us know if you have any questions or concerns and we will be happy to
 There are 2 types of Installations provided below. Review each option and choose 1 **only**.
 
 ### Installation Option 1: 
-If the **Checkout page is _can be edited_ editable**, use this option. Note that Checkout page edits are only available on Shopify Plus.
+If the **Checkout page _cannot be edited_ **, use this option. Note that Checkout page edits are only available on Shopify Plus.
 
 #### Assets
 |Assets|Integration Type| Asset Type|
@@ -66,7 +66,7 @@ If the **Checkout page is _can be edited_ editable**, use this option. Note that
 ==================
 
 ### Installation Option 2: 
-If the **Checkout page is _can be edited_**, use this option.
+If the **Checkout page _can be edited_**, use this option.
 
 #### Assets
 |Assets|Integration Type| Asset Type|
