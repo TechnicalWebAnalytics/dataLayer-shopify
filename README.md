@@ -34,7 +34,7 @@ If the **Checkout page _cannot be edited_**,  use this option. ( Checkout page e
 |confirmation page|Modification|**Admin Setting:** *Settings > Checkout > Order Processing > Additional Pixels & Scripts*|
 |dataLayer-allPages|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
 |dataLayer-confirmation|Creation|**Code Block:** *( will add to confirmation page, further details in instructions )*|
-|prerequisite library|Creation or Modification|This can either be a **Snippet** or **loaded into your own prerequisite library** ( unless adding to the confirmation page )|
+|prerequisite library|Creation or Modification|This can either be a **Snippet** or **loaded into your own prerequisite library** |
 |Google Tag Manager or any other Tag Manager Code|Creation or Modification|This can either be a **Snippet** ( unless adding to the confirmation page ) or added directly into your **Layout**|
 
 #### Instructions ( Option 1 )
