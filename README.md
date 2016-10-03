@@ -43,11 +43,11 @@ If the **Checkout page is _can be edited_ editable**, use this option. Note that
   2.  Within the **confirmation page** the GTM / Tag Manager container ( actual code block ONLY ) should be placed above all additional scripts. **Important Note:** Snippets cannot be applied to the confirmation page, any scripts MUST be placed as an actual code block.
   
 2. **Create the dataLayer Snippets ( _use exact naming and casing!_ )**
-  1. Create a snippet called **_dataLayer-allPages_** and copy over the provided *dataLayer-allPages.js* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
+  1. Create a snippet called **_dataLayer-allPages_** and copy over the provided *[dataLayer-allPages.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-allPages.js)* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
 
 3. **Add the code to the layouts**
   1. Within the **theme.liquid** layout, place this include snippet `{% include 'dataLayer-allPages' %}` right before the closing \</head> tag
-  2. Within the **confirmation page** admin settings, copy over the provided *dataLayer-confirmation.js* directly below the GTM code block. 
+  2. Within the **confirmation page** admin settings, copy over the provided *[dataLayer-confirmation.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-confirmation.js)* directly below the GTM code block. 
   
 4. **Prerequisite Library**
 
@@ -61,7 +61,7 @@ If the **Checkout page is _can be edited_ editable**, use this option. Note that
   
   The library should be included only on the **theme.liquid**! The **confirmation page** dataLayer script already contains the prerequisites since you cannot use Shopify include snippets in this admin setting.
   
-  You can get the prerequisite library in the provided *dataLayer-additional.js* script.
+  You can get the prerequisite library in the provided *[dataLayer-additional.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-additional.js)* script.
   
 ==================
 
@@ -82,8 +82,8 @@ If the **Checkout page is _can be edited_**, use this option.
   1. Within the **theme.liquid & checkout.liquid** layout, place the GTM / Tag Manager container ( snippet or actual code block ) **directly below the opening \<body> tag**.
 
 2. **Create the dataLayer Snippets ( _use exact naming and casing!_ )**
-  1. Create a snippet called **_dataLayer-allPages_** and copy over the provided *dataLayer-allPages.js* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
-  2. Create a snippet called **_dataLayer-checkout_** and copy over the provided *dataLayer-checkout.js* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
+  1. Create a snippet called **_dataLayer-allPages_** and copy over the provided *[dataLayer-allPages.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-allPages.js)* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
+  2. Create a snippet called **_dataLayer-checkout_** and copy over the provided *[dataLayer-checkout.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-checkout.js)* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
 
 3. **Add the code to the layouts**
   1. Within the **theme.liquid** layout, place this include snippet `{% include 'dataLayer-allPages' %}` right before the closing \</head> tag
@@ -101,7 +101,7 @@ If the **Checkout page is _can be edited_**, use this option.
   
   The library should be included on both the **theme.liquid & checkout.liquid**!
   
-  You can get the prerequisite library in the provided *dataLayer-additional.js* script.
+  You can get the prerequisite library in the provided *[dataLayer-additional.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-additional.js)* script.
   
 ==================
 
