@@ -22,10 +22,10 @@ Keep note that this is a base template that attempts to exploit Shopify’s data
 
 Please let us know if you have any questions or concerns and we will be happy to follow up as soon as possible :)
 
-There are 2 types of Installations provided below. Review each option and choose 1 **only**.
+There are 2 types of Installations provided below. Review each option and choose **one**.
 
 ### Installation Option 1: 
-If the **Checkout page _cannot be edited_ **, use this option. Note that Checkout page edits are only available on Shopify Plus.
+If the **Checkout page _cannot be edited_**,  use this option. ( Checkout page edits are only available on Shopify Plus. )
 
 #### Assets
 |Assets|Integration Type| Asset Type|
@@ -33,7 +33,7 @@ If the **Checkout page _cannot be edited_ **, use this option. Note that Checkou
 |theme.liquid ( or your primary theme template )|Modification|**Layout:** *Online Store > Themes > ... > Edit HTML/CSS > Layout > theme.liquid ( or primary theme template )*|
 |confirmation page|Modification|**Admin Setting:** *Settings > Checkout > Order Processing > Additional Pixels & Scripts*|
 |dataLayer-allPages|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
-|dataLayer-confirmation|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
+|dataLayer-confirmation|Creation|**Code Block:** *( will add to confirmation page, further details in instructions )*|
 |prerequisite library|Creation or Modification|This can either be a **Snippet** or **loaded into your own prerequisite library** |
 |Google Tag Manager or any other Tag Manager Code|Creation or Modification|This can either be a **Snippet** ( unless adding to the confirmation page ) or added directly into your **Layout**|
 
@@ -63,6 +63,8 @@ If the **Checkout page _cannot be edited_ **, use this option. Note that Checkou
   
   You can get the prerequisite library in the provided *[dataLayer-additional.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-additional.js)* script.
   
+5. **Review, Test, Done :)**
+  
 ==================
 
 ### Installation Option 2: 
@@ -74,8 +76,9 @@ If the **Checkout page _can be edited_**, use this option.
 |theme.liquid ( or your primary theme template )|Modification|**Layout:** *Online Store > Themes > ... > Edit HTML/CSS > Layout > theme.liquid ( or primary theme template )*|
 |checkout.liquid|Modification|**Layout:** *Online Store > Themes > ... > Edit HTML/CSS > Layout > checkout.liquid*|
 |dataLayer-allPages|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
-|dataLayer-confirmation|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
+|dataLayer-checkout|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
 |prerequisite library|Creation or Modification|This can either be a snippet or loaded into your own prerequisite library |
+|Google Tag Manager or any other Tag Manager Code|Creation or Modification|This can either be a **Snippet** or added directly into your **Layout**|
 
 #### Instructions ( Option 2 )
 1. **GTM / Tag Manager Installation or Modification**
@@ -83,7 +86,7 @@ If the **Checkout page _can be edited_**, use this option.
 
 2. **Create the dataLayer Snippets ( _use exact naming and casing!_ )**
   1. Create a snippet called **_dataLayer-allPages_** and copy over the provided *[dataLayer-allPages.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-allPages.js)* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
-  2. Create a snippet called **_dataLayer-checkout_** and copy over the provided *[dataLayer-checkout.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-checkout.js)* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
+  2. Create a snippet called **_dataLayer-checkout_** and copy over the provided *[dataLayer-checkout.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-checkout.js)* in the newly created snippet. No changes need to be made to this snippet.
 
 3. **Add the code to the layouts**
   1. Within the **theme.liquid** layout, place this include snippet `{% include 'dataLayer-allPages' %}` right before the closing \</head> tag
@@ -102,6 +105,8 @@ If the **Checkout page _can be edited_**, use this option.
   The library should be included on both the **theme.liquid & checkout.liquid**!
   
   You can get the prerequisite library in the provided *[dataLayer-additional.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-additional.js)* script.
+  
+5. **Review, Test, Done :)**
   
 ==================
 
