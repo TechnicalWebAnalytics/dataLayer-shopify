@@ -12,7 +12,7 @@ http://www.simoahava.com/analytics/data-layer/
 
 ## Quick Notes
 
-If you only need to reference the dataLayer output naviagate to the "Pages & Variables" section or just click on [this link](#pages--variables-guide).
+**If you only need to reference the dataLayer output**, navigate to the "Pages & Variables" section or just click on [this link](#pages--variables-guide).
 
 For integrations please continue reading. 
 
@@ -49,6 +49,20 @@ If the **Checkout page is _can be edited_ editable**, use this option. Note that
   1. Within the **theme.liquid** layout, place this include snippet `{% include 'dataLayer-allPages' %}` right before the closing \</head> tag
   2. Within the **confirmation page** admin settings, copy over the provided *dataLayer-confirmation.js* directly below the GTM code block. 
   
+4. **Prerequisite Library**
+
+  You can either add the prerequisite library as a **Snippet** or load into your **own prequisite library**. 
+  
+  If you add the library as a **Snippet**, make sure to place your library include above the dataLayer include. For example:
+  
+  `{% include 'your-prerequisite-library' %}`
+  
+  `{% include 'dataLayer-allPages' %}`
+  
+  The library should be included only on the **theme.liquid**! The **confirmation page** dataLayer script already contains the prerequisites since you cannot use Shopify include snippets in this admin setting.
+  
+  You can get the prerequisite library in the provided *dataLayer-additional.js* script.
+  
 ==================
 
 ### Installation Option 2: 
@@ -74,6 +88,20 @@ If the **Checkout page is _can be edited_**, use this option.
 3. **Add the code to the layouts**
   1. Within the **theme.liquid** layout, place this include snippet `{% include 'dataLayer-allPages' %}` right before the closing \</head> tag
   2. Within the **checkout.liquid** layout, place this include snippet `{% include 'dataLayer-checkout' %}` right before the closing \</head> tag
+  
+4. **Prerequisite Library**
+  
+  You can either add the prerequisite library as a **Snippet** or load into your **own prequisite library**. 
+  
+  If you add the library as a **Snippet**, make sure to place your library include above the dataLayer includes. For example:
+   
+  `{% include 'your-prerequisite-library' %}`
+  
+  `{% include 'dataLayer-allPages' %}`
+  
+  The library should be included on both the **theme.liquid & checkout.liquid**!
+  
+  You can get the prerequisite library in the provided *dataLayer-additional.js* script.
   
 ==================
 
