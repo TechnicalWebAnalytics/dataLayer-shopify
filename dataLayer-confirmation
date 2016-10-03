@@ -1,6 +1,6 @@
 <script>
 /*
-==============================
+===================================
 | DATALAYER ARCHITECTURE: SHOPIFY |
 -----------------------------------  
 
@@ -41,10 +41,9 @@ LICENSES: MIT ( https://opensource.org/licenses/MIT )
 
 // var consoleLog = true;
 
-/*
-======================
-| LOAD PREREQUISITES |
-----------------------
+/* =======================
+| PREREQUISITE LIBRARIES |
+--------------------------
 
 Load jQuery Cookie Library 
 --------------------------
@@ -163,54 +162,16 @@ Released under the MIT license
 
     }));
 
-/*
-==========================
-| Begin GA Check Inteval |
---------------------------
-*/
-
-var timer = 1;
-var checkGAinterval = setInterval(function() {
-  var countdown = timer++;
-  console.log(countdown);
-
-  var checkClientID = ga(function(tracker) {
-    c = tracker.get('clientId');
-    return c;
-  });
-
-  if (typeof ga != "undefined" && checkClientID != "undefined") {
-    clearInterval(checkGAinterval);    
-
-    console.log("----------------------\nBEGIN DATALAYER BUILD\nTHEME PAGES\n----------------------");
-    window.dataLayer = window.dataLayer || []
-
-    console.log('Page Template = {{template}}');
-    var template = '{{template}}';
+console.log("----------------------\nBEGIN DATALAYER BUILD\nTHEME PAGES\n----------------------");
+window.dataLayer = window.dataLayer || []
+console.log('Page Template = {{template}}');
+var template = '{{template}}';
 
 
-/*
-GA Client ID
-------------
-1. Capture & Store Google Analytics Client ID
-2. This is established as an initial identifier before user creates an account
-*/
-
-cid = [];
-ga(function(tracker) {
-  c = tracker.get('clientId');
-  cid.push(c);
-});
-
-console.log("Client ID = "+cid[0]);
-
-
-/*
-Landing Page Cookie
--------------------
+/* Landing Page Cookie
+-----------------------
 1. Detect if user just landed on the site
-2. Only fires if Page Title matches website
-*/
+2. Only fires if Page Title matches website */
 
 $.cookie.raw = true;
 
@@ -231,10 +192,8 @@ if( $.cookie('landingPage') === undefined || $.cookie('landingPage').length === 
 
 }
 
-/* 
-Log State Cookie
-----------------
-*/
+/* Log State Cookie
+------------------- */
 
 {% if customer %}
 var logState = "Logged In";
@@ -279,17 +238,13 @@ console.log("First Log = "+firstLog);
     var ts = Date.now();
     console.log("Timestamp = "+ts);
 
-/*
-==============
+/* ==========
 | DATALAYERS |
---------------
-*/
+----------- */
 
-/*
-DATALAYER: Landing Page 
------------------------
-Fires any time a user first lands on the site.
-*/
+/* DATALAYER: Landing Page
+--------------------------
+Fires any time a user first lands on the site. */
 
 if( $.cookie("landingPage") === "landed"  ){
   dataLayer.push({
@@ -298,12 +253,10 @@ if( $.cookie("landingPage") === "landed"  ){
   });
 }
 
-/*
-DATALAYER: Log State
---------------------
-1. Determine if user is logged in or not. 
-2. Return User specific data.
-*/
+/* DATALAYER: Log State
+-----------------------
+1. Determine if user is logged in or not.
+2. Return User specific data. */
 
 dataLayer.push({
   {% if shop.customer_accounts_enabled %}
@@ -321,10 +274,8 @@ dataLayer.push({
   'timestamp': ts
 },{'event':'Log State'});
 
-/*
-DATALAYER: Confirmation
---------------------
-*/
+/* DATALAYER: Confirmation
+-------------------------- */
 
 dataLayer.push({
   'transactionId': '{{checkout.order_id}}',
@@ -358,17 +309,11 @@ dataLayer.push({
     'event':'Confirmation'
   });
 
-/* 
-DATALAYER: All Pages
---------------------
-Fire all pages trigger after all additional dataLayers have loaded. 
-*/
+/* DATALAYER: All Pages
+-----------------------
+Fire all pages trigger after all additional dataLayers have loaded. */
 
 dataLayer.push({
   'event':'All Pages'
 });
-
-// END GA INTERVAL
-}
-}, 3000);
 </script>
