@@ -1,5 +1,11 @@
 # dataLayer-shopify
 
+## Quick Notes
+
+If you only need to reference the dataLayer output naviagate to the "Pages & Variables" section or just click on [this link](#pages--variables-guide).
+
+For installation please continue reading. 
+
 ## Definition
 A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs.
 
@@ -11,10 +17,6 @@ http://www.datalayerdoctor.com/a-gentle-introduction-to-the-data-layer-for-digit
 http://www.simoahava.com/analytics/data-layer/
 
 ## Integration Instructions
-
-If you only need to reference the dataLayer output naviagate to the "Pages & Variables" section or just click on [this link](#pages--variables-guide).
-
-For installation please continue to the next paragraph. 
 
 Keep note that this is a base template that attempts to exploit Shopify’s data rendering capabilities and create an ease of integration for dataLayers that can be reused across all Shopify sites. Nonetheless, each site could carry variations that may not be completely compatible with this template. There may also be some areas of data we may have missed, may be a new configuration, or we wouldn’t know is necessary for your efforts. It is highly recommended to review the entire implementation and make your own configurations if needed.
 
