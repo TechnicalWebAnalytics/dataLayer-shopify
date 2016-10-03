@@ -1,4 +1,4 @@
 # dataLayer-shopify
 
-|###Pages / Actions|######Description|
-|All Pages|Sitewide|
+|Pages / Actions |Description |
+|All Pages |Sitewide |
