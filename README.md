@@ -47,7 +47,7 @@ If the **Checkout page _cannot be edited_**,  use this option. ( Checkout page e
 
 3. **Add the code to the layouts**
   1. Within the **theme.liquid** layout, place this include snippet `{% include 'dataLayer-allPages' %}` right before the closing \</head> tag
-  2. Within the **confirmation page** admin settings, copy over the provided *[dataLayer-confirmation.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-confirmation.js)* directly below the GTM code block. 
+  2. Within the **confirmation page** admin settings, copy over the provided *[dataLayer-confirmation.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-confirmation.js)* directly above the GTM code block. 
   
 4. **Prerequisite Library**
 
