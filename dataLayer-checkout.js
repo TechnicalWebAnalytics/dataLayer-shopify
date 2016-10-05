@@ -1,16 +1,30 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+@mechellewarneke
+Unwatch 1
+Star 0
+Fork 0 TechnicalWebAnalytics/dataLayer-shopify
+Code  Issues 2  Pull requests 0  Projects 0  Wiki  Pulse  Graphs  Settings
+Branch: master Find file Copy pathdataLayer-shopify/dataLayer-checkout.js
+7e140bd  42 minutes ago
+@mechellewarneke mechellewarneke Removed cid vars in script
+1 contributor
+RawBlameHistory     
+226 lines (181 sloc)  5.71 KB
 <script>
 /*
 ===================================
 | DATALAYER ARCHITECTURE: SHOPIFY |
 -----------------------------------  
-
 DEFINITION:
 A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs.
-
 RESOURCES:
 http://www.datalayerdoctor.com/a-gentle-introduction-to-the-data-layer-for-digital-marketers/
 http://www.simoahava.com/analytics/data-layer/
-
 AUTHORS:
 Mechelle Warneke = [{
 Email: mechellewarneke@gmail.com,
@@ -20,7 +34,6 @@ BVACCEL: [{
     Position: XO Strategist | Technical Web Analyst
 }]
 }];
-
 Tyler Shambora = [{
 Website: tylershambora.com,
 BVACCEL: [{
@@ -28,10 +41,8 @@ BVACCEL: [{
     Position: Lead Web Developer
 }]
 }];
-
 EXTERNAL DEPENDENCIES:
 * jQuery Cookie Plugin v1.4.1 - https://github.com/carhartl/jquery-cookie
-
 DataLayer Architecture: Shopify v1.3.1
 COPYRIGHT 2016
 LICENSES: MIT ( https://opensource.org/licenses/MIT )
@@ -161,19 +172,19 @@ dataLayer.push({
 /* DATALAYER: Checkout
 -------------------------- */
 
-{% if template contains "checkout" %}
-if (Shopify.Checkout.step === 'contact_information'){
-	dataLayer.push({
-		'event':'Checkout',
-		'event':'Customer Information'});
-}else if (Shopify.Checkout.step === 'shipping_method'){
-	dataLayer.push({
-		'event':'Shipping Information'});
-}else if( Shopify.Checkout.step === "payment_method" ){
-	dataLayer.push({
-		'event':'Add Payment Info'});
+if(Shopify.Checkout.step.length > 0){
+	if (Shopify.Checkout.step === 'contact_information'){
+		dataLayer.push({
+			'event':'Checkout',
+			'event':'Customer Information'});
+	}else if (Shopify.Checkout.step === 'shipping_method'){
+		dataLayer.push({
+			'event':'Shipping Information'});
+	}else if( Shopify.Checkout.step === "payment_method" ){
+		dataLayer.push({
+			'event':'Add Payment Info'});
+	}
 }
-{% endif %}
 
 /* DATALAYER: Confirmation
 -------------------------- */
@@ -211,7 +222,7 @@ if(Shopify.Checkout.page == "thank_you"){
 			'pageType':'Confirmation',
 			'event':'Confirmation'
 		});
-	 {% endif %}
+	{% endif %}
 }
 
 
@@ -223,3 +234,5 @@ dataLayer.push({
 	'event':'All Pages'
 });
 </script>
+Contact GitHub API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Status Help
