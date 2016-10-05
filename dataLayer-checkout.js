@@ -45,7 +45,6 @@ LICENSES: MIT ( https://opensource.org/licenses/MIT )
 console.log("----------------------\nBEGIN DATALAYER BUILD\nTHEME PAGES\n----------------------");
 window.dataLayer = window.dataLayer || []
 console.log('Page Template = {{template}}');
-var template = '{{template}}';
 
 /* Landing Page Cookie
 -----------------------
