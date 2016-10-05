@@ -1,20 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
-@mechellewarneke
-Unwatch 1
-Star 0
-Fork 0 TechnicalWebAnalytics/dataLayer-shopify
-Code  Issues 2  Pull requests 0  Projects 0  Wiki  Pulse  Graphs  Settings
-Branch: master Find file Copy pathdataLayer-shopify/dataLayer-checkout.js
-7e140bd  42 minutes ago
-@mechellewarneke mechellewarneke Removed cid vars in script
-1 contributor
-RawBlameHistory     
-226 lines (181 sloc)  5.71 KB
 <script>
 /*
 ===================================
@@ -234,5 +217,3 @@ dataLayer.push({
 	'event':'All Pages'
 });
 </script>
-Contact GitHub API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Status Help
