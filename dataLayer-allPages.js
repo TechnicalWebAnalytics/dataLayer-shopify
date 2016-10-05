@@ -172,7 +172,6 @@ dataLayer.push({
   {% endif %}
   {% endif %}
   'firstLog': firstLog,
-  'clientId': cid[0],
   'customerEmail': '{{customer.email}}',
   'timestamp': Date.now()
 }, {'event': 'Log State'});
