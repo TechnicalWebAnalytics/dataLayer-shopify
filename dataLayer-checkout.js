@@ -124,11 +124,14 @@ console.log("First Log = "+firstLog);
 --------------------------
 Fires any time a user first lands on the site. */
 
-if( $.cookie("landingPage") === "landed"  ){
-	dataLayer.push({
-		'pageType':'Landing Page',
-		'event':'Landing Page'
-	});
+if ($.cookie('landingPage') === 'landed') {
+  dataLayer.push({
+    'pageType': 'Landing Page',
+    'event': 'Landing Page'
+  });
+  if (bvaDataLayerConfig.debug) {
+    console.log('DATALAYER: Landing Page fired.');
+  }
 }
 
 /* DATALAYER: Log State
@@ -137,19 +140,27 @@ if( $.cookie("landingPage") === "landed"  ){
 2. Return User specific data. */
 
 dataLayer.push({
-	{% if shop.customer_accounts_enabled %}
-	{% if customer %}
-	'userId': '{{customer.id}}',
-	'customerEmail': '{{customer.email}}',
-	'logState': "Logged In",
-	{% else %}
-	'logState': "Logged Out",
-	{% endif %}
-	{% endif %}
-	'firstLog': firstLog,
-	'customerEmail': '{{customer.email}}',
-	'timestamp': ts
-},{'event':'Log State'});
+  {% if shop.customer_accounts_enabled %}
+  {% if customer %}
+  'userId': '{{customer.id}}',
+  'customerEmail': '{{customer.email}}',
+  'customerFirstName': '{{customer.first_name}}',
+  'customerLastName': '{{customer.last_name}}',
+  'logState': 'Logged In',
+  {% else %}
+  'logState': 'Logged Out',
+  {% endif %}
+  {% endif %}
+  {% if customer.orders_count > 0 %}
+  'customerType': 'Returning',
+  {% else %}
+  'customerType': 'New',
+  {% endif %}
+  'firstLog': firstLog,
+  'customerEmail': '{{customer.email}}',
+  'timestamp': Date.now()
+}, {'event': 'Log State'});
+
 
 /* DATALAYER: Checkout
 -------------------------- */
@@ -172,7 +183,7 @@ if(Shopify.Checkout.step.length > 0){
 -------------------------- */
 
 if(Shopify.Checkout.page == "thank_you"){
-	{% if first_time_accessed %}
+	// {% if first_time_accessed %}
 	dataLayer.push({
 		'transactionId': '{{checkout.order_id}}',
 		'transactionNumber': '{{checkout.order_number}}',
@@ -204,7 +215,7 @@ if(Shopify.Checkout.page == "thank_you"){
 			'pageType':'Confirmation',
 			'event':'Confirmation'
 		});
-	{% endif %}
+	// {% endif %}
 }
 
 
