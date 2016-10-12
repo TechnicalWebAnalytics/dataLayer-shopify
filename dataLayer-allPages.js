@@ -51,13 +51,13 @@ LICENSES: MIT ( https://opensource.org/licenses/MIT )
 
 bvaDataLayerConfig = {
   dynamicCart: true,  // if cart is dynamic (meaning no refresh on cart add) set to true
-  cartTriggers: ['.cart-link'],
-  cartVisableSelector: ['.mfp-cart'],
+  cartTriggers: ['.my-cart,.add-to-cart,.cart-btn'],
+  cartVisableSelector: ['.inlinecart.is-active'],
   promoSubscriptionsSelectors: [],
-  ctaSelectors: ['[data-cta]'],
+  ctaSelectors: [],
   debug: true,
   cart: null
-};
+}; 
 
 jQuery.getJSON('/cart.js', function (response) {
   bvaDataLayerConfig.cart = response;
@@ -166,10 +166,17 @@ dataLayer.push({
   {% if customer %}
   'userId': '{{customer.id}}',
   'customerEmail': '{{customer.email}}',
+  'customerFirstName': '{{customer.first_name}}',
+  'customerLastName': '{{customer.last_name}}',
   'logState': 'Logged In',
   {% else %}
   'logState': 'Logged Out',
   {% endif %}
+  {% endif %}
+  {% if customer.orders_count > 0 %}
+  'customerType': 'Returning',
+  {% else %}
+  'customerType': 'New',
   {% endif %}
   'firstLog': firstLog,
   'customerEmail': '{{customer.email}}',
@@ -179,7 +186,7 @@ if (bvaDataLayerConfig.debug) {
   console.log('DATALAYER: Log State fired.');
 }
 
-/*mDATALAYER: Blog Articles
+/*DATALAYER: Blog Articles
 ---------------------------
 Fire on Blog Article Pages */
 
@@ -206,7 +213,7 @@ Fire on all product listing pages. */
 
 {% if template contains 'collection' %}
 dataLayer.push({
-  'productList': '{{ collection.title }}'
+  'productList': "{{ collection.title }}"
 }, {
   'pageType': 'Category',
   'event': 'Product List Page'
@@ -222,11 +229,20 @@ Fire on all Product View pages. */
 
 if (template.match(/.*product.*/gi) && !template.match(/.*collection.*/gi)) {
   dataLayer.push({
-    'products': [{
+    'products': {
       'id': '{{ product.id }}',
+      'sku':'{{variant.sku}}',
+      'variantId':'{{variant.id}}',
+      'productType': "{{product.type}}",
       'name': '{{ product.title }}',
-      'price': '{{ product.price | money_without_currency }}'
-    }]
+      'price': '{{ product.price | money_without_currency }}',
+      'imageURL':"https:{{ product.featured_image.src|img_url:'grande' }}", 
+      'productURL': '{{ shop.secure_url }}{{product.url}}',
+      'brand': ' {{ product.vendor|json }}',              
+      'comparePrice':'{{ product.compare_at_price_max|money_without_currency}}',
+      'categories': {{ product.collections|map:'title'|json }},
+      'currentCategory': "{{ collection.title }}"
+    }
   }, {
     'pageType': 'Product',
     'event': 'Product Page'
@@ -242,14 +258,15 @@ if (template.match(/.*product.*/gi) && !template.match(/.*collection.*/gi)) {
 
 {% if template contains 'cart' %}
 dataLayer.push({
-  'cartProducts':[{% for line in cart.items %}{
+  'cartProducts':{% for line in cart.items %}{
     'id': '{{ line_item.id }}',
     'sku': '{{ line_item.sku }}',
+    'variant': '{{line_item.variant_id}}',
     'name': '{{ line_item.title }}',
     'price': '{{ line_item.price | money_without_currency }}',
     'quantity': '{{ line_item.quantity }}'
-  },{% endfor %}]
-}, {
+  },{% endfor %}
+},{
   'pageType': 'Cart',
   'event': 'Cart Page'
 });
@@ -288,27 +305,25 @@ $(document).ready(function() {
             dataLayer.push({
               'cartProducts': bvaDataLayerConfig.cart.items.map(function (line_item) {
                 return {
-                  'id': line_item.id,
-                  'sku': line_item.sku,
-                  'name': line_item.title,
-                  'price': line_item.price,
-                  'quantity': line_item.quantity
+                  'id': '{{ line_item.id }}',
+                  'sku': '{{ line_item.sku }}',
+                  'variant': '{{line_item.variant_id}}',
+                  'name': '{{ line_item.title }}',
+                  'price': toFixed({{ line_item.price | money_without_currency }}),
+                  'quantity': '{{ line_item.quantity }}'
                 }
               })
             }, {
               'pageType': 'Cart',
               'event': 'Cart Page'
+            },{
+              'event': 'Add to Cart'
             });
             if (bvaDataLayerConfig.debug) {
               console.log('DATALAYER: Dynamic Cart View fired.');
+              console.log('DATALAYER: Add to Cart fired.');
             }
           });
-          dataLayer.push({
-            'event': 'Add to Cart'
-          });
-          if (bvaDataLayerConfig.debug) {
-            console.log('DATALAYER: Add to Cart fired.');
-          }
         }
       }, 500);
     } else {
@@ -320,19 +335,6 @@ $(document).ready(function() {
       }
     }
   });
-
-  // cartjs only
-  //
-  // $(document).on('cart.requestComplete', function(event, cart) {
-  //   // Event handling here
-  //   // determine last event included add
-  //   dataLayer.push({
-  //     'event': 'Add to Cart'
-  //   });
-  //   if (bvaDataLayerConfig.debug) {
-  //     console.log('DATALAYER: Add to Cart fired.');
-  //   }
-  // });
 
   /*
   DATALAYER: Cart View
@@ -355,9 +357,12 @@ $(document).ready(function() {
       }, {
         'pageType': 'Cart',
         'event': 'Cart Page'
+      },{
+        'event': 'Add to Cart'
       });
       if (bvaDataLayerConfig.debug) {
         console.log('DATALAYER: Dynamic Cart View fired.');
+        console.log('DATALAYER: Add to Cart fired.');
       }
     }
   });
@@ -369,15 +374,6 @@ $(document).ready(function() {
     }
   });
 
-  // Eventually use this binding attached to all forms with major email subscription list addresses
-  //
-  // $('form [action*="kmail-lists.com"],form [action*="mc-lists.com"]').on('submit', function() {
-  //   dataLayer.push({'event': 'Newsletter Subscription'});
-  //   if (bvaDataLayerConfig.debug) {
-  //     console.log('DATALAYER: All Pages fired.');
-  //   }
-  // });
-
   $(bvaDataLayerConfig.promoSubscriptionsSelectors.join(',')).on('click', function () {
     dataLayer.push({'event': 'Promo Subscription'});
     if (bvaDataLayerConfig.debug) {
@@ -385,12 +381,7 @@ $(document).ready(function() {
     }
   });
 
-  // $(bvaDataLayerConfig.ctaSelectors.join(',')).on('click', function () {
-  //   dataLayer.push();
-  //   if (bvaDataLayerConfig.debug) {
-  //     console.log('DATALAYER: All Pages fired.');
-  //   }
-  // });
+  $()
 
 });
 
