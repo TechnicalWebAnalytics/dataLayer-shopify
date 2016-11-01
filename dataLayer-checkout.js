@@ -183,7 +183,6 @@ if(Shopify.Checkout.step.length > 0){
 -------------------------- */
 
 if(Shopify.Checkout.page == "thank_you"){
-	{% if first_time_accessed %}
 	dataLayer.push({
 		'transactionId': '{{checkout.order_id}}',
 		'transactionNumber': '{{checkout.order_number}}',
@@ -215,7 +214,6 @@ if(Shopify.Checkout.page == "thank_you"){
 			'pageType':'Confirmation',
 			'event':'Confirmation'
 		});
-	{% endif %}
 }
 
 
