@@ -1,5 +1,4 @@
 <script>
-{% if first_time_accessed %}
 /*
 ===================================
 | DATALAYER ARCHITECTURE: SHOPIFY |
@@ -316,5 +315,4 @@ Fire all pages trigger after all additional dataLayers have loaded. */
 dataLayer.push({
   'event':'All Pages'
 });
-{% endif %}
 </script>
