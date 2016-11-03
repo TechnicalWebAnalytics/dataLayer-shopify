@@ -51,8 +51,8 @@ LICENSES: MIT ( https://opensource.org/licenses/MIT )
 
 bvaDataLayerConfig = {
   dynamicCart: true,  // if cart is dynamic (meaning no refresh on cart add) set to true
-  cartTriggers: ['.my-cart,.add-to-cart,.cart-btn'],
-  cartVisableSelector: ['.inlinecart.is-active'],
+  cartTriggers: ['form[action="/cart/add"] [type="submit"]'],
+  cartVisableSelector: ['[data-inline-cart]'],
   promoSubscriptionsSelectors: [],
   ctaSelectors: [],
   debug: true,
