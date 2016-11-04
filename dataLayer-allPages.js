@@ -228,28 +228,49 @@ if (bvaDataLayerConfig.debug) {
 Fire on all Product View pages. */
 
 if (template.match(/.*product.*/gi) && !template.match(/.*collection.*/gi)) {
-  dataLayer.push({
-    'products': {
-      'id': '{{ product.id }}',
-      'sku':'{{variant.sku}}',
-      'variantId':'{{variant.id}}',
-      'productType': "{{product.type}}",
-      'name': '{{ product.title }}',
-      'price': '{{ product.price | money_without_currency }}',
-      'imageURL':"https:{{ product.featured_image.src|img_url:'grande' }}", 
-      'productURL': '{{ shop.secure_url }}{{product.url}}',
-      'brand': ' {{ product.vendor|json }}',              
-      'comparePrice':'{{ product.compare_at_price_max|money_without_currency}}',
-      'categories': {{ product.collections|map:'title'|json }},
-      'currentCategory': "{{ collection.title }}"
+  sku = '';
+  function productView(){
+    var sku = '{{product.selected_variant.sku}}';
+    dataLayer.push({
+      'products': {
+        'id': '{{ product.id }}',
+        'sku':'{{product.selected_variant.sku}}',
+        'variantId':'{{product.selected_variant.id}}',
+        'productType': "{{product.type}}",
+        'name': '{{ product.title }}',
+        'price': '{{ product.price | money_without_currency }}',
+        'imageURL':"https:{{ product.featured_image.src|img_url:'grande' }}", 
+        'productURL': '{{ shop.secure_url }}{{product.url}}',
+        'brand': ' {{ product.vendor|json }}',              
+        'comparePrice':'{{ product.compare_at_price_max|money_without_currency}}',
+        'categories': {{ product.collections|map:'title'|json }},
+        'currentCategory': "{{ collection.title }}",
+        'productOptions': {
+            {% for option in product.options_with_values %}
+            {% for value in option.values %}
+            {% if option.selected_value == value %}
+            "{{ option.name }}":"{{ value }}"
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+            }
+      }
+    }, {
+      'pageType': 'Product',
+      'event': 'Product Page'
+    });
+    if (bvaDataLayerConfig.debug) {
+      console.log('DATALAYER: Product Page fired.');
     }
-  }, {
-    'pageType': 'Product',
-    'event': 'Product Page'
-  });
-  if (bvaDataLayerConfig.debug) {
-    console.log('DATALAYER: Product Page fired.');
   }
+  productView();
+
+  $('form[action="/cart/add"]').click(function(){
+    var skumatch = '{{product.selected_variant.sku}}';
+    if(sku != skumatch){
+      productView();
+    }
+  });
 }
 
 /* DATALAYER: Cart View
