@@ -291,7 +291,7 @@ dataLayer.push({
   
   'transactionProducts': [
 
-  {% for line_item in line_items %}
+  {% for line_item in checkout.line_items %}
   {
     'id': '{{line_item.product_id}}',
     'sku': '{{line_item.sku}}',
