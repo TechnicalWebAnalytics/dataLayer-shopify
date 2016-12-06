@@ -13,6 +13,7 @@ http://www.simoahava.com/analytics/data-layer/
 ## Quick Notes
 
 **If you only need to reference the dataLayer output**, navigate to the "Pages & Variables" section or just click on [this link](#pages--variables-guide).
+New commits - standby for further updates.
 
 For integrations please continue reading. 
 
