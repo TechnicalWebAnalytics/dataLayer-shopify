@@ -1,5 +1,7 @@
 # dataLayer-shopify
 
+UNDER RECONSTRUCTION
+
 ## Definition
 A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs.
 
@@ -10,32 +12,17 @@ http://www.datalayerdoctor.com/a-gentle-introduction-to-the-data-layer-for-digit
 
 http://www.simoahava.com/analytics/data-layer/
 
-## Quick Notes
+## Notes
 
 **If you only need to reference the dataLayer output**, navigate to the "Pages & Variables" section or just click on [this link](#pages--variables-guide).
 
 For integrations please continue reading. 
 
-## Integration Instructions
-
 Keep note that this is a base template that attempts to exploit Shopify’s data rendering capabilities and create an ease of integration for dataLayers that can be reused across all Shopify sites. Nonetheless, each site could carry variations that may not be completely compatible with this template. There may also be some areas of data we may have missed, may be a new configuration, or we wouldn’t know is necessary for your efforts. It is highly recommended to review the entire implementation and make your own configurations if needed.
 
 Please let us know if you have any questions or concerns and we will be happy to follow up as soon as possible :)
 
-There are 2 types of Installations provided below. Review each option and choose **one**.
-
-### Installation Option 1: 
-If the **Checkout page _cannot be edited_**,  use this option. ( Checkout page edits are only available on Shopify Plus. )
-
-#### Assets
-|Assets|Integration Type| Asset Type|
-| --------|---------|---------|
-|theme.liquid ( or your primary theme template )|Modification|**Layout:** *Online Store > Themes > ... > Edit HTML/CSS > Layout > theme.liquid ( or primary theme template )*|
-|confirmation page|Modification|**Admin Setting:** *Settings > Checkout > Order Processing > Additional Pixels & Scripts*|
-|dataLayer-allPages|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
-|dataLayer-confirmation|Creation|**Code Block:** *( will add to confirmation page, further details in instructions )*|
-|prerequisite library|Creation or Modification|This can either be a **Snippet** or **loaded into your own prerequisite library** |
-|Google Tag Manager or any other Tag Manager Code|Creation or Modification|This can either be a **Snippet** ( unless adding to the confirmation page ) or added directly into your **Layout**|
+The installation is a simple plug and play with some config modifications. 
 
 #### Instructions ( Option 1 )
 1. **GTM / Tag Manager Installation or Modification**
