@@ -1,18 +1,16 @@
 <script>
 /*
-===========================================
-| DATALAYER SEGMENT ARCHITECTURE: SHOPIFY |
--------------------------------------------
-
-DEFINITION:
-A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs.
+=================================
+| SEGMENT ARCHITECTURE: SHOPIFY |
+---------------------------------
 
 EXTERNAL DEPENDENCIES:
 * jQuery
 
-DataLayer Architecture: Shopify v1.3.1
-COPYRIGHT 2016
+Segment Architecture: Shopify v1.1
+COPYRIGHT 2017
 LICENSES: MIT ( https://opensource.org/licenses/MIT )
+AUTHORS: mechellewarneke@gmail.com | mechelle@bvaccel.com
 */
 
 /* 
@@ -20,8 +18,6 @@ LICENSES: MIT ( https://opensource.org/licenses/MIT )
 | APPLY CONFIGS FOR DYNAMIC CONTENT |
 -------------------------------------
 */
-
-console.log('{{template}}');
 
 function config(){
 	__meow__  = {
@@ -33,20 +29,14 @@ function config(){
 	};
 
 	bindings = {
-		cartTriggers                : ['#AddToCart,form[action="/cart/add"] [type="submit"],.add-to-cart,.cart-btn'],
-		viewCart                    : ['.icon-cart,form[action="/cart"],.my-cart,.trigger-cart,#mobileCart,[href="/cart"],.cart-link'],
-		removeCartTrigger           : ['[href*="/cart/change"]'],
-		cartVisableSelector         : ['.inlinecart.is-active,.inline-cart.is-active'],
-		promoSubscriptionsSelectors : [],
-		promoSuccess                : [],
-		ctaSelectors                : [],
-		newsletterSelectors         : ['input.contact_email'],
-		newsletterSuccess           : ['.success_message'],
-		searchTermQuery             : [purr.getURLParams('q')],
-		searchPage                  : ['search'],
-		wishlistSelector            : [],
-		removeWishlist              : [],
-		wishlistPage                : []
+		cartTriggers      : ['#AddToCart,form[action="/cart/add"] [type="submit"],.add-to-cart,.cart-btn'],
+		viewCart          : ['.cart-link'],
+		removeCartTrigger : ['[href*="/cart/change"]'],
+		searchTermQuery   : [purr.getURLParams('q')],
+		searchPage        : ['search'],
+		applyCoupon       : ['.order-summary__section--discount button'],
+		checkoutNext      : ['.step__footer__continue-btn'],
+		removeFromCart    : ['.icon-minus']
 	}
 }
 
@@ -105,7 +95,7 @@ function productViewed(){
 /* Product Added */
 function productAdded(){
 	{% if template contains 'product' %}
-	$(document).on("click", __meow__.cartTriggers, function(){
+	$(__meow__.cartTriggers).on("click", function(){
 		analytics.track('Product Added', {
 			product_id : '{{product.id}}',
 			sku        : '{{product.selected_or_first_available_variant.sku}}',
@@ -122,19 +112,42 @@ function productAdded(){
 
 /* Product Removed */
 function productRemoved(){
- // under construction
+	function stageRemove(){
+		purr.getProductArrayData('/cart.js').then(function(response){
+			__meow__stageRemove = __meow__.data.products
+		});
+	}
+	stageRemove();
+	setTimeout(function(){
+		$(document).on("click",__meow__.removeFromCart,function(){
+			console.log('click');
+			purr.getProductArrayData('/cart.js').then(function(response){
+				x = purr.removeFromCart(__meow__stageRemove,__meow__.data.products);
+				if(x.length > 0){
+					analytics.track('Product Removed', x);
+				}
+				stageRemove(); // reset cart data
+			});
+		});
+	},1000);
 }
 
 /* Cart Viewed */
 function cartViewed(){
-	$('.cart-link').on("click",__meow__.viewCart,function(){
-		console.log('viewcart');
-		purr.getProductArrayData('/cart.js', function(){
+	$(__meow__.viewCart).on("click",function(){
+		purr.getProductArrayData('/cart.js').then(function(response){
 			analytics.track('Cart Viewed', {
 				products: __meow__.data.products
 			});
 		});
 	});
+	if(document.location.pathname.match(/.*cart.*/g)){
+		purr.getProductArrayData('/cart.js').then(function(response){
+			analytics.track('Cart Viewed', {
+				products: __meow__.data.products
+			});
+		});
+	}
 }
 
 /* Checkout Started */
@@ -143,50 +156,110 @@ function checkoutStarted(){
 		if (Shopify.Checkout.step === 'contact_information'){
 			purr.getProductArrayData('/cart.js', function(){
 				analytics.track('Checkout Started', {
-					order_id: '{{checkout.order_number}}',
-					affiliation: '{{shop.name}}',
-					value: '{{checkout.total_price |  money_without_currency| remove: ","}}',
-					revenue: '{{checkout.subtotal_price |  money_without_currency| remove: ","}}',
-					shipping: '{{checkout.shipping_price |  money_without_currency| remove: ","}}',
-					tax: '{{checkout.tax_price |  money_without_currency| remove: ","}}',
+					order_id    : '{{checkout.order_number}}',
+					affiliation : '{{shop.name}}',
+					value       : '{{checkout.total_price |  money_without_currency| remove: ","}}',
+					revenue     : '{{checkout.subtotal_price |  money_without_currency| remove: ","}}',
+					shipping    : '{{checkout.shipping_price |  money_without_currency| remove: ","}}',
+					tax         : '{{checkout.tax_price |  money_without_currency| remove: ","}}',
 					{% for discount in checkout.discounts %}
-					discount:  '{{discount.amoun t | money_without_currency}}',
-					coupon:  '{{discount.code}}',
+					discount    :  '{{discount.amount | money_without_currency}}',
+					coupon      :  '{{discount.code}}',
 					{% endfor %}
-					currency: '{{shop.currency}}',
-					products: __meow__.data.products
+					currency    : '{{shop.currency}}',
+					products    : __meow__.data.products
 				});
 			});
 		}
 	}
 }
 
-/* Checkout Step Viewed */
-function stepViewed(){
+/* Checkout Step Viewed | Completed */
+function checkout(){
 	if(Shopify.Checkout){
+		function stepcomplete(step){
+			$(document).on('click',__meow__.checkoutNext,function(){
+				analytics.track('Checkout Step Completed', {
+					step: step
+				});
+			})
+		}
 		if (Shopify.Checkout.step === 'contact_information'){
 			analytics.track('Checkout Step Viewed', {
 				step: 1
 			});
+			stepcomplete('1');
 		}else if (Shopify.Checkout.step === 'shipping_method'){
 			analytics.track('Checkout Step Viewed', {
 				step: 2
 			});
+			stepcomplete('2');
 		}else if( Shopify.Checkout.step === "payment_method" ){
 			analytics.track('Checkout Step Viewed', {
 				step: 3
 			});
+			stepcomplete('3');
 		}
 	}
 }
 
-/* Checkout Step Completed */
-/* Payment Info Entered */
+/* Payment Info Entered - In iFrame - cannot be accessed*/
+
 /* Coupon Applied */
-/* Order Cancelled */
+function couponApplied(){
+	$(document).on("click",__meow__.applyCoupon,function(){ 
+		event.stopPropagation();
+		var check = setInterval(function(){
+			{% for discount in checkout.discounts %}
+			if('{{discount.title}}'){
+				clearInterval(check);
+				analytics.track('Coupon Applied', {
+					order_id    : '{{checkout.order_number}}',
+					coupon_id   : '{{discount.id}}',
+					coupon_name : '{{discount.title}}',
+					discount    : '{{discount.amount | money_without_currency}}'
+				});
+			}
+			{% endfor %}
+		}, 1000);
+		check;
+		setTimeout(function( ) { clearInterval( check ); }, 50000);
+	});
+}
+
+/* Order Cancelled - customer has to call to cancel - no cancellation page */
+/* Order Refunded - customer has to call for refund - no refund page */
+
 /* Order Completed */
-/* Purchased Item */
-/* Order Refunded */
+function orderCompleted(){
+	if(Shopify.Checkout){
+		if(Shopify.Checkout.page == "thank_you" || document.location.pathname.match(/.*order.*/g)){
+			analytics.track('Order Completed', {
+				order_id    : '{{checkout.order_number}}',
+				affiliation : "{{shop.name}}",
+				total       : '{{checkout.total_price |  money_without_currency| remove: ","}}',
+				revenue     :'{{checkout.subtotal_price |  money_without_currency| remove: ","}}',
+				shipping    : '{{checkout.shipping_price |  money_without_currency| remove: ","}}',
+				tax         : '{{checkout.tax_price |  money_without_currency| remove: ","}}',
+				{% for discount in checkout.discounts %}
+				discount : '{{discount.amoun t | money_without_currency}}',
+				coupon   : '{{discount.code}}',
+				{% endfor %}
+				currency : '{{shop.currency}}',
+				products : [{% for line_item in checkout.line_items %}
+				{
+					product_id : '{{line_item.product_id}}',
+					sku        : '{{line_item.sku}}',
+					name       : "{{line_item.title}}",
+					price      : '{{line_item.price | money_without_currency| remove: ","}}',
+					quantity   : '{{line_item.quantity}}',
+					category   : "{{line_item.product.type}}",
+				},
+				{% endfor %}]
+			});
+		}
+	}
+}
 
 /* 
 ===================================
@@ -251,7 +324,7 @@ function loadUtilities(){
 	}
 
 	this.getProductData = function(url){
-		jQuery.getJSON(url, function (response) {
+		return jQuery.getJSON(url, function (response) {
 			var data = response.product;
 			__meow__.data = {
 				product_id : data.id,
@@ -265,8 +338,8 @@ function loadUtilities(){
 		});
 	}
 
-	this.getProductArrayData = function(url){
-		jQuery.getJSON(url, function (response) {
+	this.getProductArrayData = function(url,callback){
+		return jQuery.getJSON(url).then(function (response) {
 			data = response;
 			__meow__.data  = {
 				'products': data.items.map(function (line_item) {
@@ -281,7 +354,33 @@ function loadUtilities(){
 					}
 				})        
 			};
-		});
+		})
+		return __meow__.data;
+	}
+
+	this.removeFromCart = function(originalCart,newCart){
+		function arr_diff (a1, a2) {
+			var a = [], diff = [];
+			for (var i = 0; i < a1.length; i++) {
+				a[a1[i]] = true;
+			}
+			for (var i = 0; i < a2.length; i++) {
+				if (a[a2[i]]) {
+					delete a[a2[i]];
+				} else {
+					a[a2[i]] = true;
+				}
+			}
+			for (var k in a) {
+				diff.push(k);
+			}
+			return diff;
+		};
+		var cartIDs = [];
+		var removeIDs = [];
+		var removeCart = [];
+		for(var i=originalCart.length-1;i>=0;i--){var x=parseFloat(originalCart[i].variant);cartIDs.push(x)}for(var i=newCart.length-1;i>=0;i--){var x=parseFloat(newCart[i].variant);removeIDs.push(x)}function arr_diff(b,c){var a=[],diff=[];for(var i=0;i<b.length;i++){a[b[i]]=true}for(var i=0;i<c.length;i++){if(a[c[i]]){delete a[c[i]]}else{a[c[i]]=true}}for(var k in a){diff.push(k)}return diff};var x=arr_diff(cartIDs,removeIDs)[0];for(var i=originalCart.length-1;i>=0;i--){if(originalCart[i].variant==x){removeCart.push(originalCart[i])}}
+			return removeCart;
 	}
 }
 
@@ -333,9 +432,14 @@ function setup(){
 	productSearched();
 	productListViewed();
 	productViewed();
-	productAdded();
+	checkout();
+	orderCompleted();
+
 	$(document).ready(function(){
+		productAdded();
 		cartViewed();
+		couponApplied();
+		productRemoved();
 	});
 }
 
