@@ -92,7 +92,7 @@ function productViewed(){
 	analytics.track('Product Viewed', {
 		product_id : '{{product.id}}',
 		sku        : '{{product.selected_or_first_available_variant.sku}}',
-		variant    : '{{product.selected_or_first_available_variant}}',
+		variant    : '{{product.selected_or_first_available_variant.variant}}',
 		category   : "{{product.type}}",
 		name       : "{{product.title}}",
 		brand      : '{{shop.name}}',
@@ -106,10 +106,10 @@ function productViewed(){
 function productAdded(){
 	{% if template contains 'product' %}
 	$(document).on("click", __meow__.cartTriggers, function(){
-		analytics.track('Product Viewed', {
+		analytics.track('Product Added', {
 			product_id : '{{product.id}}',
 			sku        : '{{product.selected_or_first_available_variant.sku}}',
-			variant    : '{{product.selected_or_first_available_variant}}',
+			variant    : '{{product.selected_or_first_available_variant.variant}}',
 			category   : "{{product.type}}",
 			name       : "{{product.title}}",
 			brand      : '{{shop.name}}',
@@ -127,7 +127,8 @@ function productRemoved(){
 
 /* Cart Viewed */
 function cartViewed(){
-	$(__meow__.viewCart).click(function(){
+	$('.cart-link').on("click",__meow__.viewCart,function(){
+		console.log('viewcart');
 		purr.getProductArrayData('/cart.js', function(){
 			analytics.track('Cart Viewed', {
 				products: __meow__.data.products
@@ -140,20 +141,21 @@ function cartViewed(){
 function checkoutStarted(){
 	if(Shopify.Checkout){
 		if (Shopify.Checkout.step === 'contact_information'){
-			purr.getProductArrayData('/cart.js');
-			analytics.track('Checkout Started', {
-				order_id: '{{checkout.order_number}}',
-				affiliation: '{{shop.name}}',
-				value: '{{checkout.total_price |  money_without_currency| remove: ","}}',
-				revenue: '{{checkout.subtotal_price |  money_without_currency| remove: ","}}',
-				shipping: '{{checkout.shipping_price |  money_without_currency| remove: ","}}',
-				tax: '{{checkout.tax_price |  money_without_currency| remove: ","}}',
-				{% for discount in checkout.discounts %}
-				discount:  '{{discount.amoun t | money_without_currency}}',
-				coupon:  '{{discount.code}}',
-				{% endfor %}
-				currency: '{{shop.currency}}',
-				products: __meow__.data.products
+			purr.getProductArrayData('/cart.js', function(){
+				analytics.track('Checkout Started', {
+					order_id: '{{checkout.order_number}}',
+					affiliation: '{{shop.name}}',
+					value: '{{checkout.total_price |  money_without_currency| remove: ","}}',
+					revenue: '{{checkout.subtotal_price |  money_without_currency| remove: ","}}',
+					shipping: '{{checkout.shipping_price |  money_without_currency| remove: ","}}',
+					tax: '{{checkout.tax_price |  money_without_currency| remove: ","}}',
+					{% for discount in checkout.discounts %}
+					discount:  '{{discount.amoun t | money_without_currency}}',
+					coupon:  '{{discount.code}}',
+					{% endfor %}
+					currency: '{{shop.currency}}',
+					products: __meow__.data.products
+				});
 			});
 		}
 	}
@@ -332,7 +334,9 @@ function setup(){
 	productListViewed();
 	productViewed();
 	productAdded();
-	cartViewed();
+	$(document).ready(function(){
+		cartViewed();
+	});
 }
 
 /* LOAD ARCHITECTURE */
