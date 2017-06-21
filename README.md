@@ -28,6 +28,8 @@ Please let us know if you have any questions or concerns and we will be happy to
 
 There are 2 types of Installations provided below. Review each option and choose **one**.
 
+---
+
 ### Installation Option 1: 
 If the **Checkout page _cannot be edited_**,  use this option. ( Checkout page edits are only available on Shopify Plus. )
 
@@ -39,7 +41,6 @@ If the **Checkout page _cannot be edited_**,  use this option. ( Checkout page e
 |dataLayer-allPages|Creation|**Snippet:** *Online Store > Themes > ... > Edit HTML/CSS > Snippets > ( will create Snippet in instructions )*|
 |Google Tag Manager or any other Tag Manager Code|Creation or Modification|This can either be a **Snippet** ( unless adding to the confirmation page ) or added directly into your **Layout**|
 
-#### Instructions ( Option 1 )
 **GTM / Tag Manager Installation or Modification**
   * Within the **theme.liquid** layout, place the GTM / Tag Manager container ( snippet or actual code block ) **directly below the opening \<body> tag**.
   * Within the **confirmation page** the GTM / Tag Manager container ( actual code block ONLY ) should be placed above all additional scripts. **Important Note:** Snippets cannot be applied to the confirmation page, any scripts MUST be placed as an actual code block.
@@ -161,5 +162,3 @@ customBindings = {
 * These are already included in the dataLayer build.
   
 5. **Review, Test, Done :)**
-  
----
