@@ -12,13 +12,13 @@ http://www.simoahava.com/analytics/data-layer/
 
 ## Pages / Actions & Variables Guide
 
+**You can access the full Pages/Actions & Variables list *[here](https://docs.google.com/spreadsheets/d/1SB96_v8dwNMGy-GlVJ7DkrmXrezaBYI5V6MLmD-FF8Q/edit?usp=sharing)*.**
+
 ### Pages / Actions
 The Page types and descriptions the dataLayer will exist.
 
 ### Variables
 All information the dataLayer is able to extract and the pages they can be extracted from.
-
-**You can access the full Pages/Actions & Variables list *[here](https://docs.google.com/spreadsheets/d/1SB96_v8dwNMGy-GlVJ7DkrmXrezaBYI5V6MLmD-FF8Q/edit?usp=sharing)*.**
 
 ## GTM Pages & Variables Import
 If you are using GTM, you can import *[this](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/GTM-InitialSetup.json)*  container that sets up most of the GTM Triggers and Variables for you. This is constantly updated but if there are certain configurations that are not present please refer to the guide above and you should be able to set them up yourself. 
