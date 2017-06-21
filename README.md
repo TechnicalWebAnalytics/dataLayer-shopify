@@ -12,6 +12,12 @@ http://www.simoahava.com/analytics/data-layer/
 
 ## Pages / Actions & Variables Guide
 
+### Pages / Actions
+The Page types and descriptions the dataLayer will exist.
+
+### Variables
+All information the dataLayer is able to extract and the pages they can be extracted from.
+
 You can access the full list *[here](https://docs.google.com/spreadsheets/d/1SB96_v8dwNMGy-GlVJ7DkrmXrezaBYI5V6MLmD-FF8Q/edit?usp=sharing)*.
 
 ## GTM Pages & Variables Import
@@ -28,12 +34,6 @@ You can get more information on the changes by clicking on "View Detailed Change
 All together it would look something like this:
 
 ![GTM Import](https://dl.dropboxusercontent.com/1/view/j91ogtv4iwbtmok/Apps/Shutter/02_2017_06_21.png)
-
-### Pages / Actions
-The Page types and descriptions the dataLayer will exist.
-
-### Variables
-All information the dataLayer is able to extract and the pages they can be extracted from.
 
 ## Integration Instructions
 
