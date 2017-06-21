@@ -14,7 +14,8 @@ http://www.simoahava.com/analytics/data-layer/
 
 You can access the full list *[here](https://docs.google.com/spreadsheets/d/1SB96_v8dwNMGy-GlVJ7DkrmXrezaBYI5V6MLmD-FF8Q/edit?usp=sharing)*.
 
-## If you are using GTM, you can import *[this](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/GTM-InitialSetup.json)*  container that sets up most of the Triggers and Variables for you. This is constantly updated so if there are certain configurations that are not present please refer to the guide above and you should be able to set them up yourself. 
+## GTM Pages & Variables Import
+If you are using GTM, you can import *[this](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/GTM-InitialSetup.json)*  container that sets up most of the Triggers and Variables for you. This is constantly updated so if there are certain configurations that are not present please refer to the guide above and you should be able to set them up yourself. 
 
 To import the container navigate to Admin > Import Container.
 
