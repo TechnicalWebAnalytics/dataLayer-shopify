@@ -94,7 +94,7 @@ customBindings = {
   
 **Review, Test, Done :)**
   
-==================
+---
 
 ### Installation Option 2: 
 If the **Checkout page _can be edited_**, use this option.
@@ -115,7 +115,7 @@ If the **Checkout page _can be edited_**, use this option.
   * Create a snippet called **_dataLayer-allPages_** and copy over the provided *[dataLayer-allPages.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-allPages.js)* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
 
   ```javascript
-  /* =====================
+/* =====================
 | DYNAMIC DEPENDENCIES |
 --------------------- */
 
@@ -162,5 +162,4 @@ customBindings = {
   
 5. **Review, Test, Done :)**
   
-==================
-
+---
