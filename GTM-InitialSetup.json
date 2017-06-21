@@ -1,0 +1,1736 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-03-17 01:12:24",
+    "containerVersion": {
+        "path": "accounts/472143687/containers/6504273/versions/0",
+        "accountId": "472143687",
+        "containerId": "6504273",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/472143687/containers/6504273",
+            "accountId": "472143687",
+            "containerId": "6504273",
+            "name": "Initial Setup",
+            "publicId": "GTM-WDKJ4DH",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1489713120972",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/472143687/containers/6504273/workspaces?apiLink=container"
+        },
+        "trigger": [
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "triggerId": "13",
+                "name": "Add Payment Info",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "DataLayer Loaded"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page Type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Add Payment Info"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489713022135"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "triggerId": "14",
+                "name": "Add to Cart",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Add to Cart"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489713029865"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "triggerId": "15",
+                "name": "Cart Event",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "DataLayer Loaded"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page Type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Cart"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489712897417"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "triggerId": "16",
+                "name": "Collections",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "DataLayer Loaded"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page Type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Collection"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489713035034"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "triggerId": "17",
+                "name": "Customer Information",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "DataLayer Loaded"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page Type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Customer Information"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489713039365"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "triggerId": "18",
+                "name": "Homepage",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "DataLayer Loaded"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page Type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Homepage"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489713050649"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "triggerId": "19",
+                "name": "Product Event",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "DataLayer Loaded"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page Type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Product"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489712933758"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "triggerId": "20",
+                "name": "Remove From Cart",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Remove from Cart"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489713057756"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "triggerId": "21",
+                "name": "Shipping Information",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "DataLayer Loaded"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page Type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Shipping Information"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489713061577"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "triggerId": "22",
+                "name": "Transaction Complete",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "DataLayer Loaded"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page Type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Transaction"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489713066708"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "2",
+                "name": "Billing Address 1",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "billingInfo.address1"
+                    }
+                ],
+                "fingerprint": "1489712677695",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "3",
+                "name": "Billing Address 2",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "billingInfo.address2"
+                    }
+                ],
+                "fingerprint": "1489712677695",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "4",
+                "name": "Billing City",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "billingInfo.city"
+                    }
+                ],
+                "fingerprint": "1489712677696",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "5",
+                "name": "Billing Country",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "billingInfo.country"
+                    }
+                ],
+                "fingerprint": "1489712677697",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "6",
+                "name": "Billing First Name",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "billingInfo.firstName"
+                    }
+                ],
+                "fingerprint": "1489712677698",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "7",
+                "name": "Billing Last Name",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "billingInfo.lastName"
+                    }
+                ],
+                "fingerprint": "1489712677698",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "8",
+                "name": "Billing Phone",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "billingInfo.phone"
+                    }
+                ],
+                "fingerprint": "1489712677699",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "9",
+                "name": "Billing Province",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "billingInfo.province"
+                    }
+                ],
+                "fingerprint": "1489712677700",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "10",
+                "name": "Billing Zip",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "billingInfo.zip"
+                    }
+                ],
+                "fingerprint": "1489712677700",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "11",
+                "name": "Collections",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "productList"
+                    }
+                ],
+                "fingerprint": "1489712677701",
+                "parentFolderId": "9"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "12",
+                "name": "Currency",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "currency"
+                    }
+                ],
+                "fingerprint": "1489712677702",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "13",
+                "name": "Customer Address 1",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "customerInfo.address1"
+                    }
+                ],
+                "fingerprint": "1489712677703",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "14",
+                "name": "Customer Address 2",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "customerInfo.address2"
+                    }
+                ],
+                "fingerprint": "1489712677703",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "15",
+                "name": "Customer City",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "customerInfo.city"
+                    }
+                ],
+                "fingerprint": "1489712677704",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "16",
+                "name": "Customer Country",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "customerInfo.country"
+                    }
+                ],
+                "fingerprint": "1489712677705",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "17",
+                "name": "Customer Email",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "customerEmail"
+                    }
+                ],
+                "fingerprint": "1489712677706",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "18",
+                "name": "Customer First Name",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "customerInfo.firstName"
+                    }
+                ],
+                "fingerprint": "1489712677706",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "19",
+                "name": "Customer ID",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "userId"
+                    }
+                ],
+                "fingerprint": "1489712677707",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "20",
+                "name": "Customer Last Name",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "customerInfo.lastName"
+                    }
+                ],
+                "fingerprint": "1489712677708",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "21",
+                "name": "Customer Phone",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "customerInfo.phone"
+                    }
+                ],
+                "fingerprint": "1489712677708",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "22",
+                "name": "Customer Province",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "customerInfo.province"
+                    }
+                ],
+                "fingerprint": "1489712677709",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "23",
+                "name": "Customer Zip",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "customerInfo.zip"
+                    }
+                ],
+                "fingerprint": "1489712677710",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "24",
+                "name": "Discount",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "discount"
+                    }
+                ],
+                "fingerprint": "1489712677711",
+                "parentFolderId": "12"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "1",
+                "name": "Page Type",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "pageType"
+                    }
+                ],
+                "fingerprint": "1489712677690",
+                "parentFolderId": "5"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "26",
+                "name": "Product Categories",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tx = {{Products}}[0].categories;\n\treturn x;\n}"
+                    }
+                ],
+                "fingerprint": "1489712677713",
+                "parentFolderId": "11"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "27",
+                "name": "Product Compare Price",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tx = {{Products}}[0].comparePrice;\n\treturn x;\n}"
+                    }
+                ],
+                "fingerprint": "1489712677713",
+                "parentFolderId": "11"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "28",
+                "name": "Product IDs",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tfunction getData(input){\n\t\tvar x = [];\n\t\tfor (var i = input.length - 1; i >= 0; i--) {\n\t\t\tx.push(input[i].id);\n\t\t}\n\t\treturn x;\n\t}\n  \t\n  \tvar data = getData({{Products}});\n  \t\n  \tif( data == \"undefined\" ){\n      data = \"\"; }\n  \n\treturn data;\n}"
+                    }
+                ],
+                "fingerprint": "1489712719755",
+                "parentFolderId": "10"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "29",
+                "name": "Product Image URL",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tx = {{Products}}[0].imageURL;\n\treturn x;\n}"
+                    }
+                ],
+                "fingerprint": "1489712677715",
+                "parentFolderId": "11"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "30",
+                "name": "Product Names",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tfunction getData(input){\n\t\tvar x = [];\n\t\tfor (var i = input.length - 1; i >= 0; i--) {\n\t\t\tx.push(input[i].name);\n\t\t}\n\t\treturn x;\n\t}\n  \t\n  \tvar data = getData({{Products}});\n  \t\n  \tif( data == \"undefined\" ){\n      data = \"\"; }\n  \n\treturn data;\n}"
+                    }
+                ],
+                "fingerprint": "1489712791385",
+                "parentFolderId": "10"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "31",
+                "name": "Product Options",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tx = {{Products}}[0].productOptions;\n\treturn x;\n}"
+                    }
+                ],
+                "fingerprint": "1489712677717",
+                "parentFolderId": "11"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "32",
+                "name": "Product Prices",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tfunction getData(input){\n\t\tvar x = [];\n\t\tfor (var i = input.length - 1; i >= 0; i--) {\n\t\t\tx.push(input[i].price);\n\t\t}\n\t\treturn x;\n\t}\n  \t\n  \tvar data = getData({{Products}});\n  \t\n  \tif( data == \"undefined\" ){\n      data = \"\"; \n      totalPrice = \"\";\n    }else{\n      var totalPrice = data.reduce(function(a, b) {\n        return a + b;\n      }, 0);\n    }\n  \n\treturn data;\n}"
+                    }
+                ],
+                "fingerprint": "1489712762054",
+                "parentFolderId": "10"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "33",
+                "name": "Product Primary Category",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tx = {{Products}}[0].categories[0];\n\treturn x;\n}"
+                    }
+                ],
+                "fingerprint": "1489712677719",
+                "parentFolderId": "11"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "34",
+                "name": "Product SKUs",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tfunction getData(input){\n\t\tvar x = [];\n\t\tfor (var i = input.length - 1; i >= 0; i--) {\n\t\t\tx.push(input[i].id);\n\t\t}\n\t\treturn x;\n\t}\n  \t\n  \tvar data = getData({{Products}});\n  \t\n  \tif( data == \"undefined\" ){\n      data = \"\"; }\n  \n\treturn data;\n}"
+                    }
+                ],
+                "fingerprint": "1489712799475",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "35",
+                "name": "Product Type",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tx = {{Products}}[0].productType;\n\treturn x;\n}"
+                    }
+                ],
+                "fingerprint": "1489712677721",
+                "parentFolderId": "11"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "36",
+                "name": "Product URL",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tx = {{Products}}[0].productURL;\n\treturn x;\n}"
+                    }
+                ],
+                "fingerprint": "1489712677721",
+                "parentFolderId": "11"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "37",
+                "name": "Product Variant",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n\tfunction getData(input){\n\t\tvar x = [];\n\t\tfor (var i = input.length - 1; i >= 0; i--) {\n\t\t\tx.push(input[i].variant);\n\t\t}\n\t\treturn x;\n\t}\n  \t\n  \tvar data = getData({{Products}});\n  \t\n  \tif( data == \"undefined\" ){\n      data = \"\"; }\n  \n\treturn data;\n}"
+                    }
+                ],
+                "fingerprint": "1489712813862",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "25",
+                "name": "Products",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "products"
+                    }
+                ],
+                "fingerprint": "1489712677712",
+                "parentFolderId": "10"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "38",
+                "name": "Promo Code",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "promoCode"
+                    }
+                ],
+                "fingerprint": "1489712677723",
+                "parentFolderId": "12"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "39",
+                "name": "Shipping Address 1",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "shippingInfo.address1"
+                    }
+                ],
+                "fingerprint": "1489712677724",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "40",
+                "name": "Shipping Address 2",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "shippingInfo.address2"
+                    }
+                ],
+                "fingerprint": "1489712677725",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "41",
+                "name": "Shipping City",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "shippingInfo.city"
+                    }
+                ],
+                "fingerprint": "1489712677726",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "42",
+                "name": "Shipping Country",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "shippingInfo.country"
+                    }
+                ],
+                "fingerprint": "1489712677727",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "43",
+                "name": "Shipping First Name",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "shippingInfo.firstName"
+                    }
+                ],
+                "fingerprint": "1489712677727",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "44",
+                "name": "Shipping Last Name",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "shippingInfo.lastName"
+                    }
+                ],
+                "fingerprint": "1489712677728",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "45",
+                "name": "Shipping Phone",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "shippingInfo.phone"
+                    }
+                ],
+                "fingerprint": "1489712677729",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "46",
+                "name": "Shipping Province",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "shippingInfo.province"
+                    }
+                ],
+                "fingerprint": "1489712677730",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "47",
+                "name": "Shipping Zip",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "shippingInfo.zip"
+                    }
+                ],
+                "fingerprint": "1489712677731",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "48",
+                "name": "Transaction ID",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "transactionId"
+                    }
+                ],
+                "fingerprint": "1489712677732",
+                "parentFolderId": "12"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "49",
+                "name": "Transaction Shipping",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "transactionShipping"
+                    }
+                ],
+                "fingerprint": "1489712677733",
+                "parentFolderId": "12"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "50",
+                "name": "Transaction Subtotal",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "transactionSubtotal"
+                    }
+                ],
+                "fingerprint": "1489712677734",
+                "parentFolderId": "12"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "51",
+                "name": "Transaction Tax",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "transactionTax"
+                    }
+                ],
+                "fingerprint": "1489712677735",
+                "parentFolderId": "12"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "variableId": "52",
+                "name": "Transaction Total",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "transactionTotal"
+                    }
+                ],
+                "fingerprint": "1489712677735",
+                "parentFolderId": "12"
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "folderId": "5",
+                "name": "All Pages",
+                "fingerprint": "1489712677686"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "folderId": "6",
+                "name": "Billing Info",
+                "fingerprint": "1489712677687"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "folderId": "7",
+                "name": "Cart - Checkout - Transaction Pages",
+                "fingerprint": "1489712677687"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "folderId": "8",
+                "name": "Checkout - Transaction Pages",
+                "fingerprint": "1489712677687"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "folderId": "9",
+                "name": "Collections",
+                "fingerprint": "1489712677688"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "folderId": "10",
+                "name": "Product - Cart - Checkout - Transaction Pages",
+                "fingerprint": "1489712677688"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "folderId": "11",
+                "name": "Product Page",
+                "fingerprint": "1489712677688"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "folderId": "12",
+                "name": "Transaction",
+                "fingerprint": "1489712677689"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "472143687",
+                "containerId": "6504273",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/472143687/containers/6504273/versions/0?apiLink=version"
+    }
+}
