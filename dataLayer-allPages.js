@@ -49,7 +49,15 @@ if(window.jQuery){
 // --------------- run script after jQuery has loaded
 
 // search parameters
-QueryString=function(){var query_string={};var query=window.location.search.substring(1);var vars=query.split("&");for(var i=0;i<vars.length;i++){var pair=vars[i].split("=");if(typeof query_string[pair[0]]==="undefined"){query_string[pair[0]]=pair[1]}else if(typeof query_string[pair[0]]==="string"){var arr=[query_string[pair[0]],pair[1]];query_string[pair[0]]=arr}else{query_string[pair[0]].push(pair[1])}}return query_string}();
+getURLParams = function(name, url){
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
 
 /* =====================
 | DYNAMIC DEPENDENCIES |
@@ -62,14 +70,6 @@ __bva__ = {
   wishlist: null,
   removeCart: null
 };
-
-searchTermQuery = QueryString.q; // fill in search term query here ( 'q' is usually the default)
-
-if(searchTermQuery){
-  searchTermQuery = searchTermQuery;
-}else{
-  searchTermQuery = '';
-}
 
 customBindings = {
   cartTriggers: [],
@@ -84,7 +84,8 @@ customBindings = {
   searchPage: [],
   wishlistSelector: [],
   removeWishlist: [],
-  wishlistPage: []
+  wishlistPage: [],
+  searchTermQuery: [getURLParams('q')], // replace var with correct query
 }
 
 /* DO NOT EDIT */
@@ -98,7 +99,6 @@ defaultBindings = {
   ctaSelectors: [],
   newsletterSelectors: ['input.contact_email'],
   newsletterSuccess: ['.success_message'],
-  searchTermQuery: [searchTermQuery],
   searchPage: ['search'],
   wishlistSelector: [],
   removeWishlist: [],

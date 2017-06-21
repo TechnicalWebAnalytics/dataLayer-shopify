@@ -76,14 +76,6 @@ __bva__ = {
   removeCart: null
 };
 
-searchTermQuery = QueryString.q; // fill in search term query here ( 'q' is usually the default)
-
-if(searchTermQuery){
-  searchTermQuery = searchTermQuery;
-}else{
-  searchTermQuery = '';
-}
-
 customBindings = {
   cartTriggers: [],
   viewCart: [],
@@ -97,7 +89,8 @@ customBindings = {
   searchPage: [],
   wishlistSelector: [],
   removeWishlist: [],
-  wishlistPage: []
+  wishlistPage: [],
+  searchTermQuery: [getURLParams('q')], // replace var with correct query
 }
 ```
 
