@@ -14,6 +14,20 @@ http://www.simoahava.com/analytics/data-layer/
 
 You can access the full list *[here](https://docs.google.com/spreadsheets/d/1SB96_v8dwNMGy-GlVJ7DkrmXrezaBYI5V6MLmD-FF8Q/edit?usp=sharing)*.
 
+## If you are using GTM, you can import *[this](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/GTM-InitialSetup.json)*  container that sets up most of the Triggers and Variables for you. This is constantly updated so if there are certain configurations that are not present please refer to the guide above and you should be able to set them up yourself. 
+
+To import the container navigate to Admin > Import Container.
+
+Under choose container file upload GTM-InitialSetup.json then choose whether to use a new or existing workspace. If you are unsure it is always best to use a new workspace that can be merged into an existing workspace when you are satisfied. 
+
+Next you are 9 times out of 10 always going to use merge > Rename conflicting tags, triggers and variables ( to be safe ). If you aren't sure why you should use Overwrite, then you most definitely shouldn't be using it. 
+
+You can get more information on the changes by clicking on "View Detailed Changes". Anything that is renames will have "_import_" appended to the title. 
+
+All together it would look something like this:
+
+![GTM Import](https://dl.dropboxusercontent.com/1/view/j91ogtv4iwbtmok/Apps/Shutter/02_2017_06_21.png)
+
 ### Pages / Actions
 The Page types and descriptions the dataLayer will exist.
 
