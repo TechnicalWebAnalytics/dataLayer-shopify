@@ -33,7 +33,7 @@ You can get more information on the changes by clicking on "View Detailed Change
 
 All together it would look something like this:
 
-![GTM Import](https://dl.dropboxusercontent.com/1/view/j91ogtv4iwbtmok/Apps/Shutter/02_2017_06_21.png)
+![GTM Import](https://dl.dropboxusercontent.com/1/view/88njc0f450qxh5l/Apps/Shutter/02_2017_06_21.png)
 
 ## Integration Instructions
 
