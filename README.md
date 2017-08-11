@@ -31,10 +31,6 @@ Next, you are 9 times out of 10 always going to use merge > Rename conflicting t
 
 You can get more information on the changes by clicking on "View Detailed Changes". Anything that is renamed will have "_import_" appended to the title. 
 
-All together it would look something like this:
-
-![GTM Import](https://dl.dropboxusercontent.com/1/view/88njc0f450qxh5l/Apps/Shutter/02_2017_06_21.png)
-
 ## Integration Instructions
 
 Keep note that this is a base template that attempts to exploit Shopify’s data rendering capabilities and create an ease of integration for dataLayers that can be reused across all Shopify sites. Nonetheless, each site could carry variations that may not be completely compatible with this template. There may also be some areas of data we may have missed, may be a new configuration, or we wouldn’t know is necessary for your efforts. It is highly recommended to review the entire implementation and make your own configurations if needed.
