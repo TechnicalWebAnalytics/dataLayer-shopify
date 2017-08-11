@@ -5,7 +5,7 @@
 -----------------------------------
 
 DEFINITION:
-A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs.
+A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs. 
 
 RESOURCES:
 http://www.datalayerdoctor.com/a-gentle-introduction-to-the-data-layer-for-digital-marketers/
@@ -528,7 +528,7 @@ applyBindings(defaultBindings, __bva__);
       'transactionSubtotal'    : '{{checkout.subtotal_price |  money_without_currency| remove: ","}}',
       {% for discount in checkout.discounts %}
       'promoCode' : '{{discount.code}}',
-      'discount'  : '{{discount.amoun t | money_without_currency}}',
+      'discount'  : '{{discount.amount | money_without_currency}}',
       {% endfor %}
 
       'products': __bva__products
