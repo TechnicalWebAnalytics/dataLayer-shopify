@@ -5,7 +5,7 @@
 -----------------------------------
 
 DEFINITION:
-A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs. 
+A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs.
 
 RESOURCES:
 http://www.datalayerdoctor.com/a-gentle-introduction-to-the-data-layer-for-digital-marketers/
@@ -41,7 +41,7 @@ LICENSES: MIT ( https://opensource.org/licenses/MIT )
 
 /* PRELOADS */ 
 // load jquery if it doesn't exist
-if(!window.jQuery){var jqueryScript=document.createElement('script');jqueryScript.setAttribute('src','https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js');document.head.appendChild(jqueryScript)}
+if(!window.jQuery){var jqueryScript=document.createElement('script');jqueryScript.setAttribute('src','https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js');document.head.appendChild(jqueryScript);}
 
 __bva__jQueryinterval = setInterval(function(){
 // --------------------------------------------- wait for jQuery to load
@@ -57,7 +57,7 @@ getURLParams = function(name, url){
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
-  }
+  };
 
 /* =====================
 | DYNAMIC DEPENDENCIES |
@@ -86,7 +86,7 @@ customBindings = {
   removeWishlist: [],
   wishlistPage: [],
   searchTermQuery: [getURLParams('q')], // replace var with correct query
-}
+};
 
 /* DO NOT EDIT */
 defaultBindings = {
@@ -103,19 +103,19 @@ defaultBindings = {
   wishlistSelector: [],
   removeWishlist: [],
   wishlistPage: []
-}
+};
 
 // stitch bindings
 objectArray = customBindings;
 outputObject = __bva__;
 
-function applyBindings(objectArray, outputObject){
+applyBindings = function(objectArray, outputObject){
   for (var x in objectArray) {  
     var key = x;
     var objs = objectArray[x]; 
     values = [];    
     if(objs.length > 0){    
-      values.push(objs) 
+      values.push(objs);
       if(key in outputObject){              
         values.push(outputObject[key]); 
         outputObject[key] = values.join(", "); 
@@ -124,7 +124,7 @@ function applyBindings(objectArray, outputObject){
       }   
     }  
   }
-}
+};
 
 applyBindings(customBindings, __bva__);
 applyBindings(defaultBindings, __bva__);
@@ -144,7 +144,7 @@ applyBindings(defaultBindings, __bva__);
 
     // if debug
     if(__bva__.debug){
-      console.log('=====================\n| DATALAYER SHOPIFY |\n---------------------')
+      console.log('=====================\n| DATALAYER SHOPIFY |\n---------------------');
       console.log('Page Template: {{ template }}');
     }
     
@@ -390,7 +390,7 @@ applyBindings(defaultBindings, __bva__);
           'productType'     : "{{product.type}}",
           'name'            : '{{product.title}}',
           'price'           : '{{product.price | money_without_currency | remove: ","}}',
-          'description' : '{{product.description | strip_html | escape }}',
+          'description'     : '{{product.description | strip_newlines | strip_html | escape }}',
           'imageURL'        : "https:{{product.featured_image.src|img_url:'grande'}}", 
           'productURL'      : '{{shop.secure_url}}{{product.url}}',
           'brand'           : '{{shop.name}}',              
@@ -512,7 +512,7 @@ applyBindings(defaultBindings, __bva__);
       'productType' : "{{line_item.product.type}}",
       'price'       : '{{line_item.price | money_without_currency| remove: ","}}',
       'quantity'    : '{{line_item.quantity}}',
-      'description' : '{{line_item.product.description | strip_html | escape }}',
+      'description' : '{{line_item.product.description | strip_newlines | strip_html | escape }}',
       'imageURL'    : "https:{{line_item.product.featured_image.src|img_url:'grande'}}", 
       'productURL'  : '{{shop.secure_url}}{{line_item.product.url}}'
     });
@@ -528,7 +528,7 @@ applyBindings(defaultBindings, __bva__);
       'transactionSubtotal'    : '{{checkout.subtotal_price |  money_without_currency| remove: ","}}',
       {% for discount in checkout.discounts %}
       'promoCode' : '{{discount.code}}',
-      'discount'  : '{{discount.amount | money_without_currency}}',
+      'discount'  : '{{discount.amoun t | money_without_currency}}',
       {% endfor %}
 
       'products': __bva__products
