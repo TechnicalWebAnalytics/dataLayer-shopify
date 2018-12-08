@@ -230,29 +230,29 @@ applyBindings(defaultBindings, __bva__);
     var logState = {
       {% if shop.customer_accounts_enabled %}
       {% if customer %}
-      'userId'        : '{{customer.id}}',
-      'customerEmail' : '{{customer.email}}',
+      'userId'        : {{customer.id | json}},
+      'customerEmail' : {{customer.email | json}},
       'logState'      : "Logged In",
       'customerInfo'  : {
-        'firstName'   : '{{customer_address.first_name}}',
-        'lastName'    : '{{customer_address.last_name}}',
-        'address1'    : '{{customer_address.address1}}',
-        'address2'    : '{{customer_address.address2}}',
-        'street'      : '{{customer_address.street}}',
-        'city'        : '{{customer_address.city}}',
-        'province'    : '{{customer_address.province}}',
-        'zip'         : '{{customer_address.zip}}',
-        'country'     : '{{customer_address.country}}',
-        'phone'       : '{{customer_address.phone}}',
-        'totalOrders' : '{{customer.orders_count}}',
-        'totalSpent'  : '{{customer.total_spent}}'
+        'firstName'   : {{customer_address.first_name | json}},
+        'lastName'    : {{customer_address.last_name | json}},
+        'address1'    : {{customer_address.address1 | json}},
+        'address2'    : {{customer_address.address2 | json}},
+        'street'      : {{customer_address.street | json}},
+        'city'        : {{customer_address.city | json}},
+        'province'    : {{customer_address.province | json}},
+        'zip'         : {{customer_address.zip | json}},
+        'country'     : {{customer_address.country | json}},
+        'phone'       : {{customer_address.phone | json}},
+        'totalOrders' : {{customer.orders_count | json}},
+        'totalSpent'  : {{customer.total_spent | money_without_currency | remove: "," | json}}
       },
       {% else %}
       'logState' : "Logged Out",
       {% endif %}
       {% endif %}
       'firstLog'      : firstLog,
-      'customerEmail' : '{{customer.email}}',
+      'customerEmail' : {{customer.email | json}},
       'timestamp'     : Date.now(),  
       {% if customer.orders_count > 2 %}
       'customerType'       : 'Returning',
@@ -262,33 +262,33 @@ applyBindings(defaultBindings, __bva__);
       'customerTypeNumber' :'1', 
       {% endif %}
       'shippingInfo' : {
-        'fullName'  : '{{checkout.shipping_address.name}}',
-        'firstName' : '{{checkout.shipping_address.first_name}}',
-        'lastName'  : '{{checkout.shipping_address.last_name}}',
-        'address1'  : '{{checkout.shipping_address.address1}}',
-        'address2'  : '{{checkout.shipping_address.address2}}',
-        'street'    : '{{checkout.shipping_address.street}}',
-        'city'      : '{{checkout.shipping_address.city}}',
-        'province'  : '{{checkout.shipping_address.province}}',
-        'zip'       : '{{checkout.shipping_address.zip}}',
-        'country'   : '{{checkout.shipping_address.country}}',
-        'phone'     : '{{checkout.shipping_address.phone}}',
+        'fullName'  : {{checkout.shipping_address.name | json}},
+        'firstName' : {{checkout.shipping_address.first_name | json}},
+        'lastName'  : {{checkout.shipping_address.last_name | json}},
+        'address1'  : {{checkout.shipping_address.address1 | json}},
+        'address2'  : {{checkout.shipping_address.address2 | json}},
+        'street'    : {{checkout.shipping_address.street | json}},
+        'city'      : {{checkout.shipping_address.city | json}},
+        'province'  : {{checkout.shipping_address.province | json}},
+        'zip'       : {{checkout.shipping_address.zip | json}},
+        'country'   : {{checkout.shipping_address.country | json}},
+        'phone'     : {{checkout.shipping_address.phone | json}},
       },
       'billingInfo' : {
-        'fullName'  : '{{checkout.billing_address.name}}',
-        'firstName' : '{{checkout.billing_address.first_name}}',
-        'lastName'  : '{{checkout.billing_address.last_name}}',
-        'address1'  : '{{checkout.billing_address.address1}}',
-        'address2'  : '{{checkout.billing_address.address2}}',
-        'street'    : '{{checkout.billing_address.street}}',
-        'city'      : '{{checkout.billing_address.city}}',
-        'province'  : '{{checkout.billing_address.province}}',
-        'zip'       : '{{checkout.billing_address.zip}}',
-        'country'   : '{{checkout.billing_address.country}}',
-        'phone'     : '{{checkout.billing_address.phone}}',
+        'fullName'  : {{checkout.billing_address.name | json}},
+        'firstName' : {{checkout.billing_address.first_name | json}},
+        'lastName'  : {{checkout.billing_address.last_name | json}},
+        'address1'  : {{checkout.billing_address.address1 | json}},
+        'address2'  : {{checkout.billing_address.address2 | json}},
+        'street'    : {{checkout.billing_address.street | json}},
+        'city'      : {{checkout.billing_address.city | json}},
+        'province'  : {{checkout.billing_address.province | json}},
+        'zip'       : {{checkout.billing_address.zip | json}},
+        'country'   : {{checkout.billing_address.country | json}},
+        'phone'     : {{checkout.billing_address.phone | json}},
       },
-      'checkoutEmail' : '{{checkout.email}}',
-      'currency'      : '{{shop.currency}}',
+      'checkoutEmail' : {{checkout.email | json}},
+      'currency'      : {{shop.currency | json}},
       'pageType'      : 'Log State',
       'event'         : 'Log State'
     }
@@ -318,9 +318,9 @@ applyBindings(defaultBindings, __bva__);
 
     {% if template contains 'article' %}
     var blog = {
-      'author'      : '{{article.author}}',
-      'title'       : '{{article.title}}',
-      'dateCreated' : '{{article.created_at}}',
+      'author'      : {{article.author | json}},
+      'title'       : {{article.title | json}},
+      'dateCreated' : {{article.created_at | json}},
       'pageType'    : 'Blog',
       'event'       : 'Blog'
     };
@@ -338,23 +338,23 @@ applyBindings(defaultBindings, __bva__);
     var product = {
       'products': [
       {% for product in collection.products %}{
-        'id'              : '{{ product.id }}',
-        'sku'             : '{{product.selected_variant.sku}}',
-        'variantId'       : '{{product.selected_variant.variant.id}}',
-        'productType'     : "{{product.type}}",
-        'name'            : "{{product.title}}",
-        'price'           : '{{product.price | money_without_currency | remove: ","}}',
+        'id'              : {{product.id | json}},
+        'sku'             : {{product.selected_variant.sku | json}},
+        'variantId'       : {{product.selected_variant.variant.id | json}},
+        'productType'     : {{product.type | json}},
+        'name'            : {{product.title | json}},
+        'price'           : {{product.price | money_without_currency | remove: "," | json}},
         'imageURL'        : "https:{{product.featured_image.src|img_url:'grande'}}", 
         'productURL'      : '{{shop.secure_url}}{{product.url}}',
-        'brand'           : '{{shop.name}}',              
-        'comparePrice'    : '{{product.compare_at_price_max|money_without_currency}}',
-        'categories'      : {{product.collections|map:"title"|json}},
-        'currentCategory' : "{{collection.title}}",
+        'brand'           : {{shop.name | json}},
+        'comparePrice'    : {{product.compare_at_price_max | money_without_currency | remove: "," | json}},
+        'categories'      : {{product.collections|map:"title" | json}},
+        'currentCategory' : {{collection.title | json}},
         'productOptions'  : {
           {% for option in product.options_with_values %}
           {% for value in option.values %}
           {% if option.selected_value == value %}
-          "{{option.name}}" : "{{value}}",
+          {{option.name | json}} : {{value | json}},
           {% endif %}
           {% endfor %}
           {% endfor %}
@@ -363,7 +363,7 @@ applyBindings(defaultBindings, __bva__);
       {% endfor %}]
     };
     var collections = {
-      'productList' : "{{collection.title}}",
+      'productList' : {{collection.title | json}},
       'pageType'    : 'Collection',
       'event'       : 'Collection'
     };
@@ -384,24 +384,24 @@ applyBindings(defaultBindings, __bva__);
       sku = '';
       var product = {
         'products': [{
-          'id'              : '{{product.id}}',
-          'sku'             : '{{product.selected_variant.sku}}',
-          'variantId'       : '{{product.selected_variant.variant.id}}',
-          'productType'     : "{{product.type}}",
-          'name'            : '{{product.title}}',
-          'price'           : '{{product.price | money_without_currency | remove: ","}}',
-          'description'     : '{{product.description | strip_newlines | strip_html | escape }}',
+          'id'              : {{product.id | json}},
+          'sku'             : {{product.selected_variant.sku | json}},
+          'variantId'       : {{product.selected_variant.variant.id | json}},
+          'productType'     : {{product.type | json}},
+          'name'            : {{product.title | json}},
+          'price'           : {{product.price | money_without_currency | remove: "," | json}},
+          'description'     : {{product.description | strip_newlines | strip_html | json}},
           'imageURL'        : "https:{{product.featured_image.src|img_url:'grande'}}", 
           'productURL'      : '{{shop.secure_url}}{{product.url}}',
-          'brand'           : '{{shop.name}}',              
-          'comparePrice'    : '{{product.compare_at_price_max|money_without_currency}}',
-          'categories'      : {{product.collections|map:"title"|json}},
-          'currentCategory' : "{{collection.title}}",
+          'brand'           : {{shop.name | json}},              
+          'comparePrice'    : {{product.compare_at_price_max | money_without_currency | remove: "," | json}},
+          'categories'      : {{product.collections | map:"title" | json}},
+          'currentCategory' : {{collection.title | json}},
           'productOptions'  : {
             {% for option in product.options_with_values %}
             {% for value in option.values %}
             {% if option.selected_value == value %}
-            "{{option.name}}" : "{{value}}",
+            {{option.name | json}} : {{value | json}},
             {% endif %}
             {% endfor %}
             {% endfor %}
@@ -410,7 +410,7 @@ applyBindings(defaultBindings, __bva__);
       };
 
       function productView(){
-        var sku = '{{product.selected_variant.sku}}';
+        var sku = {{product.selected_variant.sku | json}};
         dataLayer.push(product, {
           'pageType' : 'Product',
           'event'    : 'Product'});
@@ -421,7 +421,7 @@ applyBindings(defaultBindings, __bva__);
       productView();
 
       $(__bva__.cartTriggers).click(function(){
-        var skumatch = '{{product.selected_variant.sku}}';
+        var skumatch = {{product.selected_variant.sku | json}};
         if(sku != skumatch){
           productView();
         }
@@ -435,12 +435,12 @@ applyBindings(defaultBindings, __bva__);
     {% if template contains 'cart' %}
     var cart = {
       'products':[{% for line_item in cart.items %}{
-        'id'       : '{{line_item.product_id}}',
-        'sku'      : '{{line_item.sku}}',
-        'variant'  : '{{line_item.variant_id}}',
-        'name'     : '{{line_item.title}}',
-        'price'    : '{{line_item.price | money_without_currency}}',
-        'quantity' : '{{line_item.quantity}}'
+        'id'       : {{line_item.product_id | json}},
+        'sku'      : {{line_item.sku | json}},
+        'variant'  : {{line_item.variant_id | json}},
+        'name'     : {{line_item.title | json}},
+        'price'    : {{line_item.price | money_without_currency | remove: "," | json}},
+        'quantity' : {{line_item.quantity | json}}
       },{% endfor %}],
       'pageType' : 'Cart',
       'event'    : 'Cart'
@@ -505,30 +505,30 @@ applyBindings(defaultBindings, __bva__);
     {% for line_item in checkout.line_items %}
 
     __bva__products.push({
-      'id'          : '{{line_item.product_id}}',
-      'sku'         : '{{line_item.sku}}',
-      'variantId'   : '{{line_item.variant_id}}',
-      'name'        : '{{line_item.title}}',
-      'productType' : "{{line_item.product.type}}",
-      'price'       : '{{line_item.price | money_without_currency| remove: ","}}',
-      'quantity'    : '{{line_item.quantity}}',
-      'description' : '{{line_item.product.description | strip_newlines | strip_html | escape }}',
+      'id'          : {{line_item.product_id | json}},
+      'sku'         : {{line_item.sku | json}},
+      'variantId'   : {{line_item.variant_id | json}},
+      'name'        : {{line_item.title | json}},
+      'productType' : {{line_item.product.type | json}},
+      'price'       : {{line_item.price | money_without_currency | remove: "," | json}},
+      'quantity'    : {{line_item.quantity | json}},
+      'description' : {{line_item.product.description | strip_newlines | strip_html  | json }},
       'imageURL'    : "https:{{line_item.product.featured_image.src|img_url:'grande'}}", 
       'productURL'  : '{{shop.secure_url}}{{line_item.product.url}}'
     });
 
     {% endfor %}
     transactionData = {
-      'transactionNumber'      : '{{checkout.order_id}}',
-      'transactionId'          : '{{checkout.order_number}}',
-      'transactionAffiliation' : '{{shop.name}}',
-      'transactionTotal'       : '{{checkout.total_price |  money_without_currency| remove: ","}}',
-      'transactionTax'         : '{{checkout.tax_price |  money_without_currency| remove: ","}}',
-      'transactionShipping'    : '{{checkout.shipping_price |  money_without_currency| remove: ","}}',
-      'transactionSubtotal'    : '{{checkout.subtotal_price |  money_without_currency| remove: ","}}',
+      'transactionNumber'      : {{checkout.order_id | json}},
+      'transactionId'          : {{checkout.order_number | json}},
+      'transactionAffiliation' : {{shop.name | json}},
+      'transactionTotal'       : {{checkout.total_price | money_without_currency| remove: "," | json}},
+      'transactionTax'         : {{checkout.tax_price | money_without_currency| remove: "," | json}},
+      'transactionShipping'    : {{checkout.shipping_price | money_without_currency| remove: "," | json}},
+      'transactionSubtotal'    : {{checkout.subtotal_price | money_without_currency| remove: "," | json}},
       {% for discount in checkout.discounts %}
-      'promoCode' : '{{discount.code}}',
-      'discount'  : '{{discount.amoun t | money_without_currency}}',
+      'promoCode' : {{discount.code | json}},
+      'discount'  : {{discount.amoun t | money_without_currency | json}},
       {% endfor %}
 
       'products': __bva__products
