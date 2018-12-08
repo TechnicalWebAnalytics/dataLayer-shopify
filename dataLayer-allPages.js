@@ -245,7 +245,7 @@ applyBindings(defaultBindings, __bva__);
         'country'     : '{{customer_address.country}}',
         'phone'       : '{{customer_address.phone}}',
         'totalOrders' : '{{customer.orders_count}}',
-        'totalSpent'  : '{{customer.total_spent}}'
+        'totalSpent'  : '{{customer.total_spent | money_without_currency}}'
       },
       {% else %}
       'logState' : "Logged Out",
