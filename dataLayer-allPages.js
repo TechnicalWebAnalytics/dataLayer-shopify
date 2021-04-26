@@ -1,4 +1,4 @@
-//<script>
+<script>
 /**********************
 * DATALAYER ARCHITECTURE: SHOPIFY 
 * DEFINITION: A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs.
@@ -326,7 +326,7 @@ __DL__jQueryinterval = setInterval(function(){
                 {% for product in collection.products %}{
                     'id'              : {{product.id | json}},
                     'sku'             : {{product.selected_variant.sku | json}},
-                    'variantId'       : {{product.selected_variant.variant.id | json}},
+                    'variantId'       : {{product.selected_variant.id | json}},
                     'productType'     : {{product.type | json}},
                     'name'            : {{product.title | json}},
                     'price'           : {{product.price | money_without_currency | remove: "," | json}},
@@ -371,7 +371,7 @@ __DL__jQueryinterval = setInterval(function(){
                     'products': [{
                         'id'              : {{product.id | json}},
                         'sku'             : {{product.selected_variant.sku | json}},
-                        'variantId'       : {{product.selected_variant.variant.id | json}},
+                        'variantId'       : {{product.selected_variant.id | json}},
                         'productType'     : {{product.type | json}},
                         'name'            : {{product.title | json}},
                         'price'           : {{product.price | money_without_currency | remove: "," | json}},
@@ -935,5 +935,5 @@ __DL__jQueryinterval = setInterval(function(){
                                 }); // document ready
                             }
                         }, 500);
-                        //</script>
+                        </script>
                         
