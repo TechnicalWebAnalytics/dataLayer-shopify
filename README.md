@@ -12,7 +12,7 @@ http://www.simoahava.com/analytics/data-layer/
 
 ## Pages / Actions & Variables Guide
 
-**You can access the full Pages/Actions & Variables list here: https://docs.google.com/spreadsheets/d/1SB96_v8dwNMGy-GlVJ7DkrmXrezaBYI5V6MLmD-FF8Q/edit?usp=sharing
+You can access the full Pages/Actions & Variables list here: https://docs.google.com/spreadsheets/d/1SB96_v8dwNMGy-GlVJ7DkrmXrezaBYI5V6MLmD-FF8Q/edit?usp=sharing
 
 ### Pages / Actions
 The Page types and descriptions the dataLayer will exist.
@@ -21,7 +21,9 @@ The Page types and descriptions the dataLayer will exist.
 All information the dataLayer is able to extract and the pages they can be extracted from.
 
 ## GTM Pages & Variables Import
-If you are using GTM, you can import *[this](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/GTM-InitialSetup.json)*  container that sets up most of the GTM Triggers and Variables for you. This is constantly updated but if there are certain configurations that are not present please refer to the guide above and you should be able to set them up yourself. 
+If you are using GTM, you can import the `GTM-InitialSetup.json` container that sets up most of the GTM Triggers and Variables for you. This is constantly updated but if there are certain configurations that are not present please refer to the guide above and you should be able to set them up yourself. 
+
+https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/GTM-InitialSetup.json
 
 To import the container in GTM navigate to Admin > Import Container.
 
@@ -60,34 +62,35 @@ If the **Checkout page _cannot be edited_**,  use this option. ( Checkout page e
   * Create a snippet called **_dataLayer-allPages_** and copy over the provided *[dataLayer-allPages.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-allPages.js)* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
 
 ```javascript
-/* =====================
-| DYNAMIC DEPENDENCIES |
---------------------- */
-
-__bva__ = {
-  dynamicCart: true,  // if cart is dynamic (meaning no refresh on cart add) set to true
-  debug: true, // if true, console messages will be displayed
-  cart: null,
-  wishlist: null,
-  removeCart: null
+/**********************
+* DYNAMIC DEPENDENCIES
+***********************/
+        
+ __DL__ = {
+    dynamicCart: true,  // if cart is dynamic (meaning no refresh on cart add) set to true
+    debug: true, // if true, console messages will be displayed
+    cart: null,
+    wishlist: null,
+    removeCart: null
 };
-
+        
 customBindings = {
-  cartTriggers: [],
-  viewCart: [],
-  removeCartTrigger: [],
-  cartVisableSelector: [],
-  promoSubscriptionsSelectors: [],
-  promoSuccess: [],
-  ctaSelectors: [],
-  newsletterSelectors: [],
-  newsletterSuccess: [],
-  searchPage: [],
-  wishlistSelector: [],
-  removeWishlist: [],
-  wishlistPage: [],
-  searchTermQuery: [getURLParams('q')], // replace var with correct query
-}
+    cartTriggers: [],
+    viewCart: [],
+    removeCartTrigger: [],
+    cartVisableSelector: [],
+    promoSubscriptionsSelectors: [],
+    promoSuccess: [],
+    ctaSelectors: [],
+    newsletterSelectors: [],
+    newsletterSuccess: [],
+    searchPage: [],
+    wishlistSelector: [],
+    removeWishlist: [],
+    wishlistPage: [],
+    searchTermQuery: [getURLParams('q')], // replace var with correct query
+};
+        
 ```
 
 **Add the code to the layouts**
@@ -120,34 +123,34 @@ If the **Checkout page _can be edited_**, use this option.
   * Create a snippet called **_dataLayer-allPages_** and copy over the provided *[dataLayer-allPages.js](https://github.com/TechnicalWebAnalytics/dataLayer-shopify/blob/master/dataLayer-allPages.js)* in the newly created snippet. In the code, navigate to the “Dynamic Dependencies” section and make any necessary changes.
 
   ```javascript
-/* =====================
-| DYNAMIC DEPENDENCIES |
---------------------- */
-
-__bva__ = {
-  dynamicCart: true,  // if cart is dynamic (meaning no refresh on cart add) set to true
-  debug: true, // if true, console messages will be displayed
-  cart: null,
-  wishlist: null,
-  removeCart: null
+/**********************
+* DYNAMIC DEPENDENCIES
+***********************/
+        
+ __DL__ = {
+    dynamicCart: true,  // if cart is dynamic (meaning no refresh on cart add) set to true
+    debug: true, // if true, console messages will be displayed
+    cart: null,
+    wishlist: null,
+    removeCart: null
 };
-
+        
 customBindings = {
-  cartTriggers: [],
-  viewCart: [],
-  removeCartTrigger: [],
-  cartVisableSelector: [],
-  promoSubscriptionsSelectors: [],
-  promoSuccess: [],
-  ctaSelectors: [],
-  newsletterSelectors: [],
-  newsletterSuccess: [],
-  searchPage: [],
-  wishlistSelector: [],
-  removeWishlist: [],
-  wishlistPage: [],
-  searchTermQuery: [getURLParams('q')], // replace var with correct query
-}
+    cartTriggers: [],
+    viewCart: [],
+    removeCartTrigger: [],
+    cartVisableSelector: [],
+    promoSubscriptionsSelectors: [],
+    promoSuccess: [],
+    ctaSelectors: [],
+    newsletterSelectors: [],
+    newsletterSuccess: [],
+    searchPage: [],
+    wishlistSelector: [],
+    removeWishlist: [],
+    wishlistPage: [],
+    searchTermQuery: [getURLParams('q')], // replace var with correct query
+};
 ```
 
 
