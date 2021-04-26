@@ -7,6 +7,8 @@
 DEFINITION:
 A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs.
 
+{/* testing */}
+
 RESOURCES:
 http://www.datalayerdoctor.com/a-gentle-introduction-to-the-data-layer-for-digital-marketers/
 http://www.simoahava.com/analytics/data-layer/
