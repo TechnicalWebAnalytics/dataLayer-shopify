@@ -245,7 +245,7 @@ applyBindings(defaultBindings, __bva__);
         'country'     : {{customer_address.country | json}},
         'phone'       : {{customer_address.phone | json}},
         'totalOrders' : {{customer.orders_count | json}},
-        'totalSpent'  : {{customer.total_spent | json}}
+        'totalSpent'  : {{customer.total_spent | money_without_currency | remove: "," | json}}
       },
       {% else %}
       'logState' : "Logged Out",
@@ -338,7 +338,7 @@ applyBindings(defaultBindings, __bva__);
     var product = {
       'products': [
       {% for product in collection.products %}{
-        'id'              : {{ product.id | json}},
+        'id'              : {{product.id | json}},
         'sku'             : {{product.selected_variant.sku | json}},
         'variantId'       : {{product.selected_variant.variant.id | json}},
         'productType'     : {{product.type | json}},
@@ -347,7 +347,7 @@ applyBindings(defaultBindings, __bva__);
         'imageURL'        : "https:{{product.featured_image.src|img_url:'grande'}}", 
         'productURL'      : '{{shop.secure_url}}{{product.url}}',
         'brand'           : {{shop.name | json}},
-        'comparePrice'    : {{product.compare_at_price_max|money_without_currency | json}},
+        'comparePrice'    : {{product.compare_at_price_max | money_without_currency | remove: "," | json}},
         'categories'      : {{product.collections|map:"title" | json}},
         'currentCategory' : {{collection.title | json}},
         'productOptions'  : {
@@ -394,7 +394,7 @@ applyBindings(defaultBindings, __bva__);
           'imageURL'        : "https:{{product.featured_image.src|img_url:'grande'}}", 
           'productURL'      : '{{shop.secure_url}}{{product.url}}',
           'brand'           : {{shop.name | json}},              
-          'comparePrice'    : {{product.compare_at_price_max | money_without_currency | json}},
+          'comparePrice'    : {{product.compare_at_price_max | money_without_currency | remove: "," | json}},
           'categories'      : {{product.collections | map:"title" | json}},
           'currentCategory' : {{collection.title | json}},
           'productOptions'  : {
@@ -439,7 +439,7 @@ applyBindings(defaultBindings, __bva__);
         'sku'      : {{line_item.sku | json}},
         'variant'  : {{line_item.variant_id | json}},
         'name'     : {{line_item.title | json}},
-        'price'    : {{line_item.price | money_without_currency | json}},
+        'price'    : {{line_item.price | money_without_currency | remove: "," | json}},
         'quantity' : {{line_item.quantity | json}}
       },{% endfor %}],
       'pageType' : 'Cart',
@@ -510,7 +510,7 @@ applyBindings(defaultBindings, __bva__);
       'variantId'   : {{line_item.variant_id | json}},
       'name'        : {{line_item.title | json}},
       'productType' : {{line_item.product.type | json}},
-      'price'       : {{line_item.price | money_without_currency| remove: "," | json}},
+      'price'       : {{line_item.price | money_without_currency | remove: "," | json}},
       'quantity'    : {{line_item.quantity | json}},
       'description' : {{line_item.product.description | strip_newlines | strip_html  | json }},
       'imageURL'    : "https:{{line_item.product.featured_image.src|img_url:'grande'}}", 
@@ -522,10 +522,10 @@ applyBindings(defaultBindings, __bva__);
       'transactionNumber'      : {{checkout.order_id | json}},
       'transactionId'          : {{checkout.order_number | json}},
       'transactionAffiliation' : {{shop.name | json}},
-      'transactionTotal'       : {{checkout.total_price |  money_without_currency| remove: "," | json}},
-      'transactionTax'         : {{checkout.tax_price |  money_without_currency| remove: "," | json}},
-      'transactionShipping'    : {{checkout.shipping_price |  money_without_currency| remove: "," | json}},
-      'transactionSubtotal'    : {{checkout.subtotal_price |  money_without_currency| remove: "," | json}},
+      'transactionTotal'       : {{checkout.total_price | money_without_currency| remove: "," | json}},
+      'transactionTax'         : {{checkout.tax_price | money_without_currency| remove: "," | json}},
+      'transactionShipping'    : {{checkout.shipping_price | money_without_currency| remove: "," | json}},
+      'transactionSubtotal'    : {{checkout.subtotal_price | money_without_currency| remove: "," | json}},
       {% for discount in checkout.discounts %}
       'promoCode' : {{discount.code | json}},
       'discount'  : {{discount.amoun t | money_without_currency | json}},
