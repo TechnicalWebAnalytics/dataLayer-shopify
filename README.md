@@ -12,7 +12,7 @@ http://www.simoahava.com/analytics/data-layer/
 
 ## Pages / Actions & Variables Guide
 
-**You can access the full Pages/Actions & Variables list *[here](https://docs.google.com/spreadsheets/d/1SB96_v8dwNMGy-GlVJ7DkrmXrezaBYI5V6MLmD-FF8Q/edit?usp=sharing)*.**
+**You can access the full Pages/Actions & Variables list here: https://docs.google.com/spreadsheets/d/1SB96_v8dwNMGy-GlVJ7DkrmXrezaBYI5V6MLmD-FF8Q/edit?usp=sharing
 
 ### Pages / Actions
 The Page types and descriptions the dataLayer will exist.
