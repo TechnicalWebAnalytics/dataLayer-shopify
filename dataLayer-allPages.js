@@ -325,8 +325,8 @@ __DL__jQueryinterval = setInterval(function(){
             'products': [
                 {% for product in collection.products %}{
                     'id'              : {{product.id | json}},
-                    'sku'             : {{product.selected_variant.sku | json}},
-                    'variantId'       : {{product.selected_variant.id | json}},
+                    'sku'             : {{product.selected_or_first_available_variant.sku | json}},
+                    'variantId'       : {{product.selected_or_first_available_variant.id | json}},
                     'productType'     : {{product.type | json}},
                     'name'            : {{product.title | json}},
                     'price'           : {{product.price | money_without_currency | remove: "," | json}},
@@ -370,8 +370,8 @@ __DL__jQueryinterval = setInterval(function(){
                 var product = {
                     'products': [{
                         'id'              : {{product.id | json}},
-                        'sku'             : {{product.selected_variant.sku | json}},
-                        'variantId'       : {{product.selected_variant.id | json}},
+                        'sku'             : {{product.selected_or_first_available_variant.sku | json}},
+                        'variantId'       : {{product.selected_or_first_available_variant.id | json}},
                         'productType'     : {{product.type | json}},
                         'name'            : {{product.title | json}},
                         'price'           : {{product.price | money_without_currency | remove: "," | json}},
@@ -395,7 +395,7 @@ __DL__jQueryinterval = setInterval(function(){
                 };
                 
                 function productView(){
-                    var sku = {{product.selected_variant.sku | json}};
+                    var sku = {{product.selected_or_first_available_variant.sku | json}};
                     dataLayer.push(product, {
                         'pageType' : 'Product',
                         'event'    : 'Product'});
@@ -406,7 +406,7 @@ __DL__jQueryinterval = setInterval(function(){
                     productView();
                     
                     $(__DL__.cartTriggers).click(function(){
-                        var skumatch = {{product.selected_variant.sku | json}};
+                        var skumatch = {{product.selected_or_first_available_variant.sku | json}};
                         if(sku != skumatch){
                             productView();
                         }
@@ -936,4 +936,3 @@ __DL__jQueryinterval = setInterval(function(){
                             }
                         }, 500);
                         </script>
-                        
