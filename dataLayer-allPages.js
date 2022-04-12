@@ -517,7 +517,7 @@ __DL__jQueryinterval = setInterval(function(){
                 if(__DL__.debug == true){
                     
                     /** DATALAYER: Transaction */
-                    if(document.location.pathname.match(/.*order.*/g)){
+                    if(document.location.pathname.match(/.*order.*/g)||document.location.pathname.match(/.*thank\_you.*/g)){
                         dataLayer.push(transactionData,{
                             'pageType' :'Transaction',
                             'event'    :'Transaction'
