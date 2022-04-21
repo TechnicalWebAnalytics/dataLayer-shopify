@@ -700,16 +700,21 @@ __DL__jQueryinterval = setInterval(function(){
                                     // get Json response 
                                     __DL__.cart = response;
                                     var cart = {
-                                        'products': __DL__.cart.items.map(function (line_item) {
-                                            return {
-                                                'id'       : line_item.id,
-                                                'sku'      : line_item.sku,
-                                                'variant'  : line_item.variant_id,
-                                                'name'     : line_item.title,
-                                                'price'    : (line_item.price/100),
-                                                'quantity' : line_item.quantity
+                                        'event'     : 'addToCart',
+                                        'ecommerce':{
+                                            'add': {
+                                                'products': __DL__.cart.items.map(function (line_item) {
+                                                    return {
+                                                        'id'       : line_item.id,
+                                                        'sku'      : line_item.sku,
+                                                        'variant'  : line_item.variant_id,
+                                                        'name'     : line_item.title,
+                                                        'price'    : (line_item.price/100),
+                                                        'quantity' : line_item.quantity
+                                                    }
+                                                })
                                             }
-                                        })
+                                        }
                                     }
                                     __DL__.cart = cart;
                                     collection_cartIDs = [];
