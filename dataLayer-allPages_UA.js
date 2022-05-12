@@ -1,4 +1,3 @@
-<script>
 /**********************
 * DATALAYER ARCHITECTURE: SHOPIFY 
 * DEFINITION: A data layer helps you collect more accurate analytics data, that in turn allows you to better understand what potential buyers are doing on your website and where you can make improvements. It also reduces the time to implement marketing tags on a website, and reduces the need for IT involvement, leaving them to get on with implementing new features and fixing bugs.
@@ -48,7 +47,7 @@ __DL__jQueryinterval = setInterval(function(){
         
         __DL__ = {
             dynamicCart: true,  // if cart is dynamic (meaning no refresh on cart add) set to true
-            debug: true, // if true, console messages will be displayed
+            debug: false, // if true, console messages will be displayed
             cart: null,
             wishlist: null,
             removeCart: null
@@ -323,7 +322,7 @@ __DL__jQueryinterval = setInterval(function(){
         {% if template contains 'collection' %}
         var product = {
             'ecommerce': {
-                'currencyCode': {{shop.currency}}
+              'currencyCode': '{{shop.currency}}',
                 'impressions': [
                     {% for product in collection.products %}{
                         'id'              : {{product.id | json}},
@@ -468,8 +467,8 @@ __DL__jQueryinterval = setInterval(function(){
                                                 'quantity' : line_item.quantity
                                             }
                                     }
-                                }
-                                }),
+                                )
+                                    }},
                                 'pageType' : 'Remove from Cart',
                             };
                             __DL__.removeCart = removeFromCart;
@@ -502,7 +501,7 @@ __DL__jQueryinterval = setInterval(function(){
                 __DL__products.push({
                     'id'          : {{line_item.product_id | json}},
                     'sku'         : {{line_item.sku | json}},
-                    'variant'   : '{{line_item.variant_id | json}}',
+                    'variant'   : {{line_item.variant_id | json}},
                     'name'        : {{line_item.title | json}},
                     'category' : {{line_item.product.type | json}},
                     'price'       : {{line_item.price | money_without_currency | remove: "," | json}},
@@ -531,7 +530,7 @@ __DL__jQueryinterval = setInterval(function(){
                 if(__DL__.debug == true){
                     
                     /** DATALAYER: Transaction */
-                    if(document.location.pathname.match(/.*order.*/g)||document.location.pathname.match(/.*thank\_you.*/g)){
+                    if(document.location.pathname.match(/.*thank\_you.*/g)){
                         dataLayer.push({ ecommerce: null });
                         dataLayer.push(transactionData,{
                             'pageType' :'Transaction',
@@ -720,10 +719,11 @@ __DL__jQueryinterval = setInterval(function(){
                                     collection_cartIDs = [];
                                     collection_matchIDs = [];
                                     collection_addtocart = [];
+                                  	if (__DL__.cart.products != undefined){
                                     for (var i = __DL__.cart.products.length - 1; i >= 0; i--) {
                                         var x = parseFloat(__DL__.cart.products[i].variant);
                                         collection_cartIDs.push(x);
-                                    }
+                                    }}
                                 });
                                 
                                 function __DL__addtocart(){
@@ -747,10 +747,11 @@ __DL__jQueryinterval = setInterval(function(){
                                                 })
                                             }
                                             __DL__.cart = cart;
-                                            for (var i = __DL__.cart.products.length - 1; i >= 0; i--) {
+                                          if (__DL__.cart.products != undefined){
+                                          	for (var i = __DL__.cart.products.length - 1; i >= 0; i--) {
                                                 var x = parseFloat(__DL__.cart.products[i].variant);
                                                 collection_matchIDs.push(x);
-                                            }
+                                            }}
                                             function arr_diff(b, c) {
                                                 var a = [],
                                                 diff = [];
@@ -771,6 +772,7 @@ __DL__jQueryinterval = setInterval(function(){
                                             };
                                             var x = arr_diff(collection_cartIDs, collection_matchIDs).pop();
                                             console.log(x);
+                                          	if (__DL__.cart.products != undefined){
                                             for (var i = __DL__.cart.products.length - 1; i >= 0; i--) {
                                                 if (__DL__.cart.products[i].variant.toString() === x) {
                                                     product = {'products':[__DL__.cart.products[i]]};
@@ -784,7 +786,7 @@ __DL__jQueryinterval = setInterval(function(){
                                                         console.log("Add to Cart"+" :"+JSON.stringify(product, null, " "));
                                                     }
                                                 }
-                                            }
+                                            }}
                                         });
                                     },1000);
                                     
@@ -825,8 +827,7 @@ __DL__jQueryinterval = setInterval(function(){
                                                                     'name'     : line_item.title,
                                                                     'price'    : (line_item.price/100),
                                                                     'quantity' : line_item.quantity
-                                                                }
-                                                            }),
+                                                                }}),
                                                             'pageType' : 'Remove from Cart',
                                                             'event'    : 'Remove from Cart'         
                                                         };
@@ -955,4 +956,3 @@ __DL__jQueryinterval = setInterval(function(){
                                 }); // document ready
                             }
                         }, 500);
-                        </script>
