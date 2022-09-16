@@ -508,7 +508,7 @@ __DL__jQueryinterval = setInterval(function(){
                     'transactionSubtotal'    : {{checkout.subtotal_price | money_without_currency| remove: "," | json}},
                     {% for discount in checkout.discounts %}
                     'promoCode' : {{discount.code | json}},
-                    'discount'  : {{discount.amoun t | money_without_currency | json}},
+                    'discount'  : {{discount.amount | money_without_currency | json}},
                     {% endfor %}
                     
                     'products': __DL__products
